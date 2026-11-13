@@ -11,6 +11,21 @@
 @media(max-width:900px){.heroGrid{grid-template-columns:1fr}.dashboard{max-width:650px;width:100%;margin:auto}.links{display:none}.grid3,.benefits{grid-template-columns:repeat(2,1fr)}.workflow{grid-template-columns:repeat(2,1fr)}.cta{grid-template-columns:1fr}}
 @media(max-width:620px){.wrap{width:calc(100% - 28px)}.hero{padding:52px 0 40px}section{padding:55px 0}.grid3,.agents,.benefits,.usecases,.proscons{grid-template-columns:1fr}.agent:last-child{grid-column:auto}.workflow{grid-template-columns:repeat(2,1fr)}.band{align-items:flex-start;flex-direction:column}.formgrid{grid-template-columns:1fr}.sticky{display:block;position:fixed;bottom:10px;left:10px;right:10px;z-index:20}.sticky .btn{width:100%;box-shadow:0 10px 30px #0008}footer{padding-bottom:80px}.navin{height:63px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Tombol simulasi per agen — mengikuti desain referensi */
+.simulation-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
+.simulation-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:168px;min-height:34px;padding:5px 12px;
+  border:2px solid #f2c400;border-radius:0;
+  background:transparent;color:#f2c400;
+  font:700 .82rem/1.2 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease
+}
+.simulation-btn:hover{background:#f2c400;color:#11151f;transform:translateY(-1px)}
+.simulation-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:620px){.simulation-btn{width:100%;min-width:0}}
+
 </style>
 </head>
 <body>
@@ -51,11 +66,11 @@
 
 <section id="agents"><div class="wrap"><div class="head"><span class="kicker">The 5-Agent System</span><h2>Lima agen. Lima fokus.<br><span class="grad">Satu siklus perbaikan berkelanjutan.</span></h2><p>Setiap agen memiliki tanggung jawab dan output yang jelas. Agent 5 mengoordinasikan alur; Agent 4 menjaga kualitas dan mengembalikan pembelajaran ke riset dan kreatif.</p></div>
 <div class="agents">
-<article class="agent"><div class="agenttop"><div class="num">01</div><div><h3>Content Research & Root Cause Analyst</h3><p>Temukan peluang sebelum menginvestasikan waktu produksi.</p></div></div><div class="tags"><span class="tag">Trend research</span><span class="tag">Engagement signals</span><span class="tag">Niche scorecard</span></div><ul><li>Mengumpulkan data yang diizinkan dari platform dan sumber relevan.</li><li>Membandingkan view, like, komentar, share, dan metrik lain bila tersedia.</li><li>Menganalisis pola hook, topik, format, CTA, dan respons audiens.</li><li>Menyusun 3–4 kandidat niche, pros & cons, risiko, dan hipotesis eksperimen.</li></ul><div class="output"><b>Solusi & manfaat:</b> keputusan lebih terarah dan brief kreatif berbasis bukti.<br><b>Output:</b> research brief, source register, metrics, niche scorecard.</div></article>
-<article class="agent"><div class="agenttop"><div class="num">02</div><div><h3>Content Creation & Testing</h3><p>Ubah insight menjadi konsep kreatif yang siap dinilai.</p></div></div><div class="tags"><span class="tag">Hook & headline</span><span class="tag">Mockup</span><span class="tag">A/B concepts</span></div><ul><li>Membuat draft image, carousel, storyboard, naskah video, caption, dan CTA.</li><li>Menghasilkan variasi konsep dengan variabel tes yang jelas.</li><li>Memeriksa keterbacaan, format, ejaan, brand guideline, dan hak penggunaan.</li><li>Mencatat revisi serta merekomendasikan versi untuk review independen.</li></ul><div class="output"><b>Solusi & manfaat:</b> proses kreatif terstruktur, konsep mudah dibandingkan, revisi tercatat.<br><b>Output:</b> mockup, creative brief, QA checklist, test results.</div></article>
-<article class="agent"><div class="agenttop"><div class="num">03</div><div><h3>Content Production & Delivery</h3><p>Skalakan produksi tanpa kehilangan kendali versi.</p></div></div><div class="tags"><span class="tag">Batch production</span><span class="tag">Multi-platform assets</span><span class="tag">Publishing package</span></div><ul><li>Memproduksi aset final dari konsep yang sudah disetujui.</li><li>Mengadaptasi rasio, durasi, subtitle, thumbnail, caption, dan metadata per platform.</li><li>Menyimpan versi aset dan manifest untuk pelacakan.</li><li>Menyiapkan paket siap unggah atau menerbitkan melalui integrasi resmi yang diizinkan.</li></ul><div class="output"><b>Solusi & manfaat:</b> batch konten rapi, aset tidak mudah tertukar, delivery dapat diaudit.<br><b>Output:</b> aset final, production manifest, release checklist, publish log.</div></article>
-<article class="agent"><div class="agenttop"><div class="num">04</div><div><h3>Content Quality Reviewer & Critic</h3><p>Jaga standar sebelum rilis, pelajari performa sesudahnya.</p></div></div><div class="tags"><span class="tag">Independent QA</span><span class="tag">Performance review</span><span class="tag">Improvement loop</span></div><ul><li>Memeriksa akurasi, kesesuaian mockup, kualitas visual/audio, CTA, dan kebijakan platform.</li><li>Memberi status PASS, NEEDS REVISION, atau REJECT beserta alasan.</li><li>Memantau metrik pascapublikasi sesuai akses dan interval yang tersedia.</li><li>Mengubah temuan menjadi rekomendasi dan backlog eksperimen.</li></ul><div class="output"><b>Solusi & manfaat:</b> mengurangi risiko kesalahan rilis dan membuat pembelajaran terukur.<br><b>Output:</b> pre-publish review, post-publish analysis, improvement backlog.</div></article>
-<article class="agent"><div class="agenttop"><div class="num">05</div><div><h3>Content Automation & Lead Orchestrator</h3><p>Hubungkan semua tahap, status, jadwal, dan approval.</p></div></div><div class="tags"><span class="tag">Hermes Agent</span><span class="tag">Telegram Bot</span><span class="tag">Cron schedule</span><span class="tag">Audit trail</span></div><ul><li>Mengelola task ID, status workflow, handoff, retry, notifikasi, dan arsip di folder Downloads yang dikonfigurasi.</li><li>Mengirim preview untuk approval mockup dan approval rilis melalui Telegram Bot.</li><li>Menjalankan jadwal hanya jika status, izin, QA, dan approval memenuhi syarat.</li><li>Mengirim ringkasan harian dan mengembalikan insight Agent 4 ke siklus berikutnya.</li></ul><div class="output"><b>Solusi & manfaat:</b> satu alur yang dapat dipantau, keputusan terlacak, otomasi tetap terkendali.<br><b>Output:</b> workflow spec, schedule calendar, run registry, approval log, orchestration report.</div></article>
+<article class="agent"><div class="agenttop"><div class="num">01</div><div><h3>Content Research & Root Cause Analyst</h3><p>Temukan peluang sebelum menginvestasikan waktu produksi.</p></div></div><div class="tags"><span class="tag">Trend research</span><span class="tag">Engagement signals</span><span class="tag">Niche scorecard</span></div><ul><li>Mengumpulkan data yang diizinkan dari platform dan sumber relevan.</li><li>Membandingkan view, like, komentar, share, dan metrik lain bila tersedia.</li><li>Menganalisis pola hook, topik, format, CTA, dan respons audiens.</li><li>Menyusun 3–4 kandidat niche, pros & cons, risiko, dan hipotesis eksperimen.</li></ul><div class="output"><b>Solusi & manfaat:</b> keputusan lebih terarah dan brief kreatif berbasis bukti.<br><b>Output:</b> research brief, source register, metrics, niche scorecard.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="1" aria-label="Buka simulasi Agent 1">Simulasi Agent 1</button></div></article>
+<article class="agent"><div class="agenttop"><div class="num">02</div><div><h3>Content Creation & Testing</h3><p>Ubah insight menjadi konsep kreatif yang siap dinilai.</p></div></div><div class="tags"><span class="tag">Hook & headline</span><span class="tag">Mockup</span><span class="tag">A/B concepts</span></div><ul><li>Membuat draft image, carousel, storyboard, naskah video, caption, dan CTA.</li><li>Menghasilkan variasi konsep dengan variabel tes yang jelas.</li><li>Memeriksa keterbacaan, format, ejaan, brand guideline, dan hak penggunaan.</li><li>Mencatat revisi serta merekomendasikan versi untuk review independen.</li></ul><div class="output"><b>Solusi & manfaat:</b> proses kreatif terstruktur, konsep mudah dibandingkan, revisi tercatat.<br><b>Output:</b> mockup, creative brief, QA checklist, test results.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="2" aria-label="Buka simulasi Agent 2">Simulasi Agent 2</button></div></article>
+<article class="agent"><div class="agenttop"><div class="num">03</div><div><h3>Content Production & Delivery</h3><p>Skalakan produksi tanpa kehilangan kendali versi.</p></div></div><div class="tags"><span class="tag">Batch production</span><span class="tag">Multi-platform assets</span><span class="tag">Publishing package</span></div><ul><li>Memproduksi aset final dari konsep yang sudah disetujui.</li><li>Mengadaptasi rasio, durasi, subtitle, thumbnail, caption, dan metadata per platform.</li><li>Menyimpan versi aset dan manifest untuk pelacakan.</li><li>Menyiapkan paket siap unggah atau menerbitkan melalui integrasi resmi yang diizinkan.</li></ul><div class="output"><b>Solusi & manfaat:</b> batch konten rapi, aset tidak mudah tertukar, delivery dapat diaudit.<br><b>Output:</b> aset final, production manifest, release checklist, publish log.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="3" aria-label="Buka simulasi Agent 3">Simulasi Agent 3</button></div></article>
+<article class="agent"><div class="agenttop"><div class="num">04</div><div><h3>Content Quality Reviewer & Critic</h3><p>Jaga standar sebelum rilis, pelajari performa sesudahnya.</p></div></div><div class="tags"><span class="tag">Independent QA</span><span class="tag">Performance review</span><span class="tag">Improvement loop</span></div><ul><li>Memeriksa akurasi, kesesuaian mockup, kualitas visual/audio, CTA, dan kebijakan platform.</li><li>Memberi status PASS, NEEDS REVISION, atau REJECT beserta alasan.</li><li>Memantau metrik pascapublikasi sesuai akses dan interval yang tersedia.</li><li>Mengubah temuan menjadi rekomendasi dan backlog eksperimen.</li></ul><div class="output"><b>Solusi & manfaat:</b> mengurangi risiko kesalahan rilis dan membuat pembelajaran terukur.<br><b>Output:</b> pre-publish review, post-publish analysis, improvement backlog.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="4" aria-label="Buka simulasi Agent 4">Simulasi Agent 4</button></div></article>
+<article class="agent"><div class="agenttop"><div class="num">05</div><div><h3>Content Automation & Lead Orchestrator</h3><p>Hubungkan semua tahap, status, jadwal, dan approval.</p></div></div><div class="tags"><span class="tag">Hermes Agent</span><span class="tag">Telegram Bot</span><span class="tag">Cron schedule</span><span class="tag">Audit trail</span></div><ul><li>Mengelola task ID, status workflow, handoff, retry, notifikasi, dan arsip di folder Downloads yang dikonfigurasi.</li><li>Mengirim preview untuk approval mockup dan approval rilis melalui Telegram Bot.</li><li>Menjalankan jadwal hanya jika status, izin, QA, dan approval memenuhi syarat.</li><li>Mengirim ringkasan harian dan mengembalikan insight Agent 4 ke siklus berikutnya.</li></ul><div class="output"><b>Solusi & manfaat:</b> satu alur yang dapat dipantau, keputusan terlacak, otomasi tetap terkendali.<br><b>Output:</b> workflow spec, schedule calendar, run registry, approval log, orchestration report.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="5" aria-label="Buka simulasi Agent 5">Simulasi Agent 5</button></div></article>
 </div></div></section>
 
 <section id="workflow"><div class="wrap"><div class="head"><span class="kicker">Workflow</span><h2>Dari riset sampai insight berikutnya.</h2><p>Dua gerbang persetujuan membantu otomasi mempercepat eksekusi tanpa mengambil alih keputusan penting.</p></div>
@@ -129,5 +144,84 @@
     ].join("\n");
     window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(body), "_blank", "noopener,noreferrer");
   });
+
+  // Placeholder simulasi: masing-masing tombol membuka halaman baru.
+  // Konten simulasi dapat diganti setelah desain dan alur tiap agent disepakati.
+  const AGENT_SIMULATIONS = {
+    1: { title: "Content Research & Root Cause Analyst", short: "Riset niche, tren, engagement, dan scorecard." },
+    2: { title: "Content Creation & Testing", short: "Pembuatan mockup, hook, caption, dan variasi A/B." },
+    3: { title: "Content Production & Delivery", short: "Produksi aset final dan paket publikasi multi-platform." },
+    4: { title: "Content Quality Reviewer & Critic", short: "Pemeriksaan kualitas, evaluasi performa, dan rekomendasi." },
+    5: { title: "Content Automation & Lead Orchestrator", short: "Koordinasi workflow, approval, jadwal, dan audit trail." }
+  };
+
+  document.querySelectorAll("[data-agent-simulation]").forEach(function(button) {
+    button.addEventListener("click", function() {
+      const agentNumber = button.getAttribute("data-agent-simulation");
+      const agent = AGENT_SIMULATIONS[agentNumber];
+      if (!agent) return;
+
+      const popup = window.open("", "contentflow_agent_" + agentNumber,
+        "popup=yes,width=1100,height=760,resizable=yes,scrollbars=yes");
+      if (!popup) {
+        alert("Popup diblokir oleh browser. Izinkan pop-up untuk situs ini, lalu klik tombol simulasi kembali.");
+        return;
+      }
+
+      const safeTitle = agent.title.replace(/[&<>"']/g, function(char) {
+        return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char];
+      });
+      const safeShort = agent.short.replace(/[&<>"']/g, function(char) {
+        return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char];
+      });
+
+      popup.document.open();
+      popup.document.write(`<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulasi Agent ${agentNumber} — ContentFlow.AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:32px;background:
+radial-gradient(ellipse at 12% 0%,#29204b 0,transparent 38%),
+radial-gradient(ellipse at 95% 18%,#102f3a 0,transparent 30%),#0b0e17;
+color:#f5f7ff;font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{width:min(850px,100%);margin:5vh auto;padding:clamp(24px,5vw,48px);
+border:1px solid #2a3246;border-radius:22px;background:#131827}
+.kicker{color:#b7f477;font-size:.75rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.number{display:inline-grid;place-items:center;width:44px;height:44px;margin:18px 0 8px;
+border-radius:13px;background:#1b2235;color:#b7f477;font-weight:900}
+h1{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.12;letter-spacing:-.04em;margin:8px 0 12px}
+p{color:#aab3c9}
+.placeholder{margin-top:28px;padding:24px;border:1px dashed #f2c400;border-radius:14px;
+background:#f2c4000a;text-align:center}
+.placeholder strong{display:block;color:#f2c400;margin-bottom:8px}
+.back{display:inline-flex;margin-top:24px;padding:10px 16px;border:1px solid #2a3246;
+border-radius:9px;color:#f5f7ff;text-decoration:none}
+.back:hover{border-color:#b7f477;color:#b7f477}
+</style>
+</head>
+<body>
+<main>
+<div class="kicker">ContentFlow.AI · The 5-Agent System</div>
+<div class="number">${agentNumber.toString().padStart(2, "0")}</div>
+<h1>${safeTitle}</h1>
+<p>${safeShort}</p>
+<div class="placeholder">
+<strong>SIMULASI AGENT ${agentNumber} BELUM TERSEDIA</strong>
+Area ini disiapkan sebagai placeholder. Desain antarmuka, input, proses simulasi,
+dan contoh output akan ditambahkan setelah rancangan simulasi Agent ${agentNumber} ditetapkan.
+</div>
+<a class="back" href="#" onclick="window.close();return false;">Tutup halaman simulasi</a>
+</main>
+</body>
+</html>`);
+      popup.document.close();
+      popup.focus();
+    });
+  });
+
 </script>
 </body></html>
