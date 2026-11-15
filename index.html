@@ -138,7 +138,7 @@ th{background:#1a2133;text-align:center}td.n{text-align:right;white-space:nowrap
 .demo{background:#3a2b00;color:#ffd466;border-radius:8px;padding:8px 12px;margin:0 0 10px;font-size:14px}
 .box{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:6px 20px 12px}
 .box li{margin:6px 0}.path{font-family:Consolas,monospace;background:#0c0f19;padding:2px 6px;border-radius:4px;word-break:break-all}
-.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.acts button,.acts a{background:#171d2e;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 16px;font:600 14px Inter;cursor:pointer;text-decoration:none}
+.acts[hidden]{display:none}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.acts button,.acts a{background:#171d2e;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 16px;font:600 14px Inter;cursor:pointer;text-decoration:none}
 #out{display:none}#out.on{display:block}.link{color:var(--mut)}
 </style></head>
 <body><main>
@@ -163,11 +163,9 @@ th{background:#1a2133;text-align:center}td.n{text-align:right;white-space:nowrap
     <thead><tr><th rowspan="2">No</th><th rowspan="2">Platform</th><th rowspan="2">Niche</th><th rowspan="2">Angle</th><th rowspan="2">Market Target / Audience</th><th rowspan="2">Strong Point</th><th rowspan="2">Pain Point</th><th rowspan="2">Pros</th><th rowspan="2">Cons</th><th colspan="4">Jumlah Engagement</th><th rowspan="2">Skor</th></tr>
     <tr><th>View</th><th>Like</th><th>Share</th><th>Comment</th></tr></thead>
     <tbody id="tb"></tbody></table></div>
+  <p class="link" id="mnote" style="font-size:13px"></p>
   <h2>Ringkasan &amp; Insight:</h2>
   <div class="box" id="ins"></div>
-  <h2>Penyimpanan &amp; Database</h2>
-  <div class="box" id="files"></div>
-  <div class="acts"><button type="button" id="dl">Unduh database.csv</button><button type="button" id="again">Riset ulang</button></div>
 </section>
 </main>
 <script>
@@ -175,7 +173,7 @@ const BRIDGE=(window.opener&&window.opener.CONTENTFLOW_BRIDGE)||'http://127.0.0.
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>n==null?'N/A':new Intl.NumberFormat('id-ID').format(n);
-let csv='',t0=0,timer;
+let t0=0,timer;
 document.querySelectorAll('input[name=p]').forEach(r=>r.onchange=()=>$('go').disabled=false);
 function status(msg,cls){const s=$('st');s.className='status on '+(cls||'');$('msg').textContent=msg;if(!cls){const l=document.createElement('li');l.textContent=msg;$('log').appendChild(l)}}
 function tick(on){clearInterval(timer);if(on){t0=Date.now();timer=setInterval(()=>$('tm').textContent='Berjalan '+Math.floor((Date.now()-t0)/1000)+' detik',1000)}else $('tm').textContent=''}
@@ -183,8 +181,9 @@ function render(d,demo){
   $('demoflag').innerHTML=demo?'<div class="demo">DATA ILUSTRASI untuk pratinjau tampilan — bukan hasil scraping.</div>':'';
   $('tb').innerHTML=d.rows.map(r=>`<tr><td>${r.no}</td><td>${esc(r.platform)}</td><td><b>${esc(r.niche)}</b></td><td>${esc(r.angle)}</td><td>${esc(r.audience)}</td><td>${esc(r.strong_point)}</td><td>${esc(r.pain_point)}</td><td>${esc(r.pros)}</td><td>${esc(r.cons)}</td><td class="n">${fmt(r.views)}</td><td class="n">${fmt(r.likes)}</td><td class="n">${fmt(r.shares)}</td><td class="n">${fmt(r.comments)}</td><td><span class="badge">${r.score==null?'N/A':esc(r.score)}</span></td></tr>`).join('');
   $('ins').innerHTML=`<p>${esc(d.summary)}</p><ul>${(d.insights||[]).map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`+(d.limitations?`<p class="link">Keterbatasan: ${esc(d.limitations)}</p>`:'');
-  $('files').innerHTML=demo?'<p>Mode ilustrasi: tidak ada file yang disimpan.</p>':`<p>Run ID: <b>${esc(d.runId)}</b></p><p>Folder: <span class="path">${esc(d.dir)}</span></p><ul><li>research_brief.md</li><li>source_register.csv</li><li>metrics.csv</li><li>database.csv (siap impor ke Supabase / Antigravity)</li><li>hypotheses.md</li></ul><p class="link">${esc(d.supabase||'')}</p>`;
-  csv=d.csv||'';$('dl').style.display=csv?'':'none';$('out').className='on';$('out').scrollIntoView({behavior:'smooth'});
+  const notes=d.rows.filter(r=>r.metric_note).map(r=>esc(r.niche)+': '+esc(r.metric_note));
+  $('mnote').innerHTML=notes.length?'<b>Catatan sumber metrik:</b><br>'+notes.join('<br>'):'';
+  $('out').className='on';$('out').scrollIntoView({behavior:'smooth'});
 }
 async function run(){
   const p=document.querySelector('input[name=p]:checked');if(!p)return;
@@ -199,12 +198,12 @@ async function run(){
         else if(e.event==='result'){done=true;status('Riset selesai.','done');render(e,false)}}}
     if(!done)throw new Error('Koneksi terputus sebelum hasil diterima.');
   }catch(e){
+    console.error('[Agent 1]',e);
     const off=e instanceof TypeError;
-    status(off?'Bridge Hermes belum aktif di '+BRIDGE+'. Jalankan start-bridge.bat lalu coba lagi.':e.message,'err');$('erracts').hidden=false;
+    status(off?'Layanan riset belum dapat dihubungi. Silakan coba lagi beberapa saat lagi.':'Riset belum dapat diselesaikan. Silakan coba lagi beberapa saat lagi.','err');$('erracts').hidden=false;
   }finally{tick(false);$('go').disabled=false}
 }
-$('go').onclick=run;$('again').onclick=()=>{$('out').className='';$('st').className='status';window.scrollTo({top:0,behavior:'smooth'})};
-$('dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='database.csv';a.click()};
+$('go').onclick=run;
 $('demo').onclick=()=>{const p=(document.querySelector('input[name=p]:checked')||{value:'tiktok'}).value;const P={tiktok:'TikTok',instagram:'Instagram',facebook:'Facebook'}[p];
   const R=(no,niche,angle,aud,sp,pp,pr,co,v,l,s,c,sc)=>({no,platform:P,niche,angle,audience:aud,strong_point:sp,pain_point:pp,pros:pr,cons:co,views:v,likes:l,shares:s,comments:c,score:sc});
   render({rows:[R(1,'Produktivitas kerja','Rutinitas 5 menit sebelum kerja','Pekerja kantoran 22–35','Mudah ditiru, hasil cepat','Waktu terasa habis','Hook kuat, mudah dibagikan','Pasar ramai','1200000','85000','12000','3400',82),R(2,'Keuangan pribadi','Atur gaji tanpa aplikasi rumit','Fresh graduate','Topik relevan','Bingung mulai menabung','Komentar tinggi','Risiko klaim finansial','900000','64000','15000','5200',76),R(3,'Resep hemat','Masak 3 bahan di kos','Mahasiswa & anak kos','Biaya rendah','Anggaran terbatas','Format visual jelas','Cepat jenuh','1500000','120000','9000','2100',71)].map(r=>({...r,views:+r.views,likes:+r.likes,shares:+r.shares,comments:+r.comments})),
