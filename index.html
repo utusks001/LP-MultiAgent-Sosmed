@@ -162,7 +162,7 @@
       if (!agent) return;
 
       const popup = window.open("", "contentflow_agent_" + agentNumber,
-        "popup=yes,width=1100,height=760,resizable=yes,scrollbars=yes");
+        "popup=yes,width=1150,height=820,resizable=yes,scrollbars=yes");
       if (!popup) {
         alert("Popup diblokir oleh browser. Izinkan pop-up untuk situs ini, lalu klik tombol simulasi kembali.");
         return;
@@ -174,6 +174,338 @@
       const safeShort = agent.short.replace(/[&<>"']/g, function(char) {
         return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char];
       });
+
+      if (agentNumber === "1") {
+        popup.document.open();
+        popup.document.write(`<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulasi Agent 1 — Content Research & Root Cause Analyst</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:24px;background:radial-gradient(ellipse at 12% 0%,#29204b 0,transparent 38%),radial-gradient(ellipse at 95% 18%,#102f3a 0,transparent 30%),#0b0e17;color:#f5f7ff;font:15px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{width:min(1100px,96%);margin:15px auto;padding:28px;border:1px solid #2a3246;border-radius:20px;background:#131827;box-shadow:0 20px 50px rgba(0,0,0,0.5)}
+.kicker{color:#b7f477;font-size:.75rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between}
+.live-badge{background:#b7f4771a;color:#b7f477;padding:4px 10px;border-radius:99px;font-size:.7rem;border:1px solid #b7f47744}
+.number{display:inline-grid;place-items:center;width:40px;height:40px;margin:14px 0 8px;border-radius:12px;background:#1b2235;color:#b7f477;font-weight:900;font-size:1.1rem}
+h1{font-size:1.8rem;line-height:1.2;letter-spacing:-.03em;margin:6px 0 8px;color:#fff}
+p.desc{color:#aab3c9;margin-top:0;font-size:.92rem}
+
+/* DATA INPUT styling matching DATA-INPUT.png */
+.input-box{margin:24px 0;padding:22px;border:2px solid #e74c3c;border-radius:14px;background:#0f1422;position:relative}
+.input-title{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em}
+.input-prompt{font-size:.95rem;color:#e2e8f0;margin-bottom:16px;font-weight:600}
+.radio-group{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.radio-option{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:1rem;color:#f8fafc;user-select:none}
+.radio-option input[type="radio"]{width:18px;height:18px;accent-color:#ff9800;cursor:pointer}
+.btn-research{display:inline-flex;align-items:center;justify-content:center;padding:10px 28px;border:2px solid #ff9800;border-radius:6px;background:#ffffff;color:#ff9800;font-weight:900;font-size:1rem;cursor:pointer;transition:all .2s ease;box-shadow:0 4px 12px rgba(255,152,0,0.2)}
+.btn-research:hover{background:#ff9800;color:#ffffff;transform:translateY(-2px)}
+
+/* Loader & Status */
+.loader-box{display:none;margin:20px 0;padding:18px;border:1px dashed #b7f477;border-radius:12px;background:#b7f4770d}
+.loader-text{color:#b7f477;font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:10px}
+.spinner{width:18px;height:18px;border:3px solid #b7f47744;border-top-color:#b7f477;border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.logs-box{font-family:monospace;font-size:.8rem;color:#83e0ff;margin-top:10px;max-height:100px;overflow-y:auto}
+
+/* DATA OUTPUT styling matching DATA-OUTPUT.png */
+.output-box{display:none;margin-top:28px}
+.output-title{font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.export-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.btn-export{padding:6px 12px;border:1px solid #2a3246;border-radius:8px;background:#1b2235;color:#b7f477;font-size:.8rem;font-weight:700;cursor:pointer;transition:.2s}
+.btn-export:hover{border-color:#b7f477;background:#b7f47722}
+
+/* Table Design matching DATA-OUTPUT.png */
+.table-container{overflow-x:auto;margin-bottom:24px;border:1px solid #4a5568;border-radius:8px;background:#ffffff;color:#000}
+table.data-table{width:100%;border-collapse:collapse;font-size:.82rem;text-align:left;color:#1a202c}
+table.data-table th, table.data-table td{border:1px solid #cbd5e1;padding:8px 10px;vertical-align:middle}
+table.data-table th{background:#f1f5f9;color:#0f172a;font-weight:800;text-align:center}
+table.data-table td.center{text-align:center}
+table.data-table tr:nth-child(even){background:#f8fafc}
+table.data-table tr:hover{background:#edf2f7}
+
+/* Summary Section matching DATA-OUTPUT.png */
+.summary-box{padding:20px;border:1px solid #334155;border-radius:12px;background:#0f172a;color:#e2e8f0;margin-top:20px}
+.summary-title{font-size:1.05rem;font-weight:800;color:#b7f477;margin-bottom:10px}
+.summary-content{font-size:.88rem;line-height:1.65;color:#cbd5e1}
+.summary-content strong{color:#fff}
+.path-info{margin-top:14px;padding:10px;background:#1e293b;border-radius:8px;font-family:monospace;font-size:.78rem;color:#83e0ff}
+
+.back-btn{display:inline-flex;margin-top:24px;padding:10px 18px;border:1px solid #2a3246;border-radius:10px;color:#f5f7ff;text-decoration:none;font-weight:600;font-size:.88rem;cursor:pointer}
+.back-btn:hover{border-color:#b7f477;color:#b7f477}
+</style>
+</head>
+<body>
+<main>
+<div class="kicker">
+  <span>ContentFlow.AI · The 5-Agent System</span>
+  <span class="live-badge">● Connected: lp-multiagent-sosmed.vercel.app</span>
+</div>
+<div class="number">01</div>
+<h1>Content Research & Root Cause Analyst</h1>
+<p class="desc">Riset market otomatis melalui scrapping data sosial media tentang niche viral, engagement ratio, dan pola copywriting.</p>
+
+<!-- DATA INPUT SECTION -->
+<div class="input-box">
+  <div class="input-title">DATA INPUT</div>
+  <div class="input-prompt">Pilih salah satu Platform untuk riset niche viral:</div>
+  <div class="radio-group">
+    <label class="radio-option"><input type="radio" name="platform" value="TikTok" checked> TikTok</label>
+    <label class="radio-option"><input type="radio" name="platform" value="Instagram"> Instagram</label>
+    <label class="radio-option"><input type="radio" name="platform" value="Facebook"> Facebook</label>
+  </div>
+  <button type="button" class="btn-research" id="btnResearch">Research</button>
+</div>
+
+<!-- LOADING / WORKING STATE -->
+<div class="loader-box" id="loaderBox">
+  <div class="loader-text">
+    <div class="spinner"></div>
+    <span id="loaderMsg">Agent 1 - Research sedang bekerja (working/searching)...</span>
+  </div>
+  <div class="logs-box" id="logsBox"></div>
+</div>
+
+<!-- DATA OUTPUT SECTION -->
+<div class="output-box" id="outputBox">
+  <div class="output-title">
+    <span>DATA OUTPUT:</span>
+    <span style="font-size:.8rem;color:#b7f477;font-weight:normal">✓ Database CSV Ready (Supabase & Antigravity Compatible)</span>
+  </div>
+  
+  <div class="export-bar">
+    <button class="btn-export" onclick="downloadCSV()">📥 Download database.csv</button>
+    <button class="btn-export" onclick="downloadBrief()">📄 Download research_brief.md</button>
+    <button class="btn-export" onclick="downloadMetrics()">📊 Download metrics.csv</button>
+    <button class="btn-export" onclick="downloadSources()">🔗 Download source_register.csv</button>
+    <button class="btn-export" onclick="downloadHypo()">💡 Download hypotheses.md</button>
+  </div>
+
+  <!-- TABLE MATCHING DATA-OUTPUT.png -->
+  <div class="table-container">
+    <table class="data-table" id="researchTable">
+      <thead>
+        <tr>
+          <th rowspan="2" style="width:40px">No</th>
+          <th rowspan="2">Platform</th>
+          <th rowspan="2">Niche</th>
+          <th rowspan="2">Angle</th>
+          <th rowspan="2">Market Target / Audience</th>
+          <th rowspan="2">Strong Point</th>
+          <th rowspan="2">Pain Point</th>
+          <th rowspan="2">Pros</th>
+          <th rowspan="2">Cons</th>
+          <th colspan="4">Jumlah Engagement</th>
+        </tr>
+        <tr>
+          <th>View</th>
+          <th>Like</th>
+          <th>Share</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUMMARY & INSIGHT SECTION MATCHING DATA-OUTPUT.png -->
+  <div class="summary-box">
+    <div class="summary-title">Ringkasan & Insight:</div>
+    <div class="summary-content" id="summaryText">
+    </div>
+    <div class="path-info" id="pathInfo">
+      📁 Database Storage Location: %USERPROFILE%\Downloads\Content_Automation\01_RESEARCH\
+    </div>
+  </div>
+</div>
+
+<a class="back-btn" href="#" onclick="window.close();return false;">← Tutup Halaman Simulasi</a>
+</main>
+
+<script>
+const dataset = {
+  TikTok: {
+    rows: [
+      {no:1, platform:"TikTok", niche:"Bekal Anak Kos (Quick Meal)", angle:"Solusi Hemat & Realistis < 15 Ribu", target:"Mahasiswa & Pekerja Muda (18–24 th)", strong:"Relatable, Visual step-by-step cepat", pain:"Uang saku menipis, tidak ada kompor komplit", pros:"Retention rate > 65%, Shareability tinggi", cons:"Kompetisi resep tinggi", view:"1.2M", like:"145K", share:"32K", comment:"4.8K"},
+      {no:2, platform:"TikTok", niche:"Productivity & Workspace Setup", angle:"Minimalis Low-Budget Desk Setup", target:"Freelancer & Remote Workers (20–30 th)", strong:"Estetik, link affiliate produk tinggi", pain:"Meja kerja berantakan & cepat bosan", pros:"Conversion rate affiliate > 8%", cons:"Biaya modal sampel produk", view:"850K", like:"92K", share:"18K", comment:"2.1K"},
+      {no:3, platform:"TikTok", niche:"Gen Z Financial Literacy", angle:"Gaji 3 Juta Bisa Alokasi Apa Saja?", target:"First-jobber & Fresh Graduates (21–25 th)", strong:"Sangat engaged di kolom komentar", pain:"Takut FOMO, bingung mulai tabungan", pros:"Saves/Bookmarks sangat tinggi", cons:"Perlu edukasi yang hati-hati", view:"2.1M", like:"210K", share:"64K", comment:"12.5K"},
+      {no:4, platform:"TikTok", niche:"Outfit Thrift & Style Capsule", angle:"3 Style dari 1 Celana Thrift 30 Ribu", target:"Remaja & Dewasa Muda (17–25 th)", strong:"Tinggi visual hook 3 detik pertama", pain:"Ingin tampil modis tapi budget terbatas", pros:"Virality viral score 9.2/10", cons:"Stok produk thrift acak", view:"1.5M", like:"168K", share:"41K", comment:"6.2K"}
+    ],
+    summary: \`
+      <p><strong>1. Pola Copywriting & Hook:</strong> Konten berformat kurasi angka spesifik ("< 15 Ribu", "Gaji 3 Juta") terbukti memiliki <em>Completion Rate</em> 3.4x lebih tinggi dibanding judul generik.</p>
+      <p><strong>2. Niche Rekomendasi Utama (Rank 1):</strong> <strong>Bekal Anak Kos (Quick Meal)</strong> dengan rasio share 32K yang sangat dominan, mengindikasikan tingginya dorongan audiens untuk bookmark & kirim ke grup WA/DM.</p>
+      <p><strong>3. Hipotesis Eksperimen Agent 2:</strong> Penggunaan visual 3-detik pertama berpola <em>before-after masalah harga</em> akan menaikkan CTR profil hingga 28%.</p>
+      <p><strong>4. Integrasi Database:</strong> File <code>database.csv</code> telah distrukturkan dan siap diimpor ke Supabase table <code>tiktok_niche_research</code> dan Antigravity workflow.</p>
+    \`
+  },
+  Instagram: {
+    rows: [
+      {no:1, platform:"Instagram", niche:"AI Tools & Micro-SaaS Carousel", angle:"5 Web AI Gratis Pengganti Freelancer mahal", target:"Digital Marketer & Solopreneur (22–35 th)", strong:"Format Carousel 10 slide dapet save tinggi", pain:"Pekerjaan numpuk, butuh otomasi", pros:"Save & Share metric > 15%", cons:"Trend AI berubah cepat", view:"620K", like:"48K", share:"28K", comment:"3.4K"},
+      {no:2, platform:"Instagram", niche:"Healthy Meal Prep for Working Moms", angle:"Masak Sekali untuk 3 Hari Kerja", target:"Ibu Bekerja & Pasangan Muda (25–38 th)", strong:"Tinggi kejelasan panduan & takaran", pain:"Tidak ada waktu masak tiap pagi", pros:"Audience loyalis & DMs tinggi", cons:"Durasi persiapan foto aesthetic", view:"450K", like:"36K", share:"14K", comment:"1.8K"},
+      {no:3, platform:"Instagram", niche:"Personal Branding for Introverts", angle:"Cara Buat Konten Tanpa Tampil Wajah", target:"Content Creator Pemula (18–30 th)", strong:"Sangat menjawab insecurity audiens", pain:"Malu depan kamera & kehabisan ide", pros:"High click-through rate to bio link", cons:"Kebutuhan B-roll berkualitas", view:"980K", like:"82K", share:"39K", comment:"5.1K"},
+      {no:4, platform:"Instagram", niche:"Parenting & Play-Based Learning", angle:"Permainan Sensori Anak dari Bahan Dapur", target:"Ibu Muda & Pendidik PAUD (24–35 th)", strong:"Praktis, hemat, edukatif", pain:"Anak kecanduan gadget", pros:"Komunitas aktif & tinggi tag teman", cons:"Niche spesifik segmen keluarga", view:"510K", like:"42K", share:"19K", comment:"2.7K"}
+    ],
+    summary: \`
+      <p><strong>1. Pola Copywriting & Hook:</strong> Slide pertama berlatar estetik pastel dengan pertanyaan empati ("Capek ga sih kerja manual?") mencatatkan Bookmark Rate tertinggi di Instagram Carousel.</p>
+      <p><strong>2. Niche Rekomendasi Utama (Rank 1):</strong> <strong>Personal Branding for Introverts</strong>. Sangat kuat di engagement Shares (39K) dan Bookmark, menunjukkan tingginya minat audiens terhadap <em>faceless content strategy</em>.</p>
+      <p><strong>3. Hipotesis Eksperimen Agent 2:</strong> Carousel 8-slide bertema checklist tools gratis akan meningkatkan Save-to-Reach ratio hingga 19%.</p>
+      <p><strong>4. Integrasi Database:</strong> Data <code>database.csv</code> tersinkronisasi untuk Supabase schema <code>ig_content_vault</code>.</p>
+    \`
+  },
+  Facebook: {
+    rows: [
+      {no:1, platform:"Facebook", niche:"Resep Masakan Rumahan & Kuliner", angle:"Resep Lauk Tanggal Tua Gurih & Irit", target:"Ibu Rumah Tangga & Keluarga (25–50 th)", strong:"Komentar & Share group luar biasa aktif", pain:"Bingung menu harian yang hemat", pros:"Shares ke Facebook Groups sangat luas", cons:"Persaingan resep umum", view:"780K", like:"54K", share:"45K", comment:"8.9K"},
+      {no:2, platform:"Facebook", niche:"Tips Bisnis UMKM & Jualan", angle:"Modal 100 Ribu Bisa Jualan Apa di FB?", target:"Pelaku UMKM & Pedagang Lokal (22–45 th)", strong:"Banyak diskusi & tanya jawab di komentar", pain:"Sepi pembeli & bingung pasang iklan", pros:"High intent lead for mentoring/course", cons:"Butuh contoh studi kasus riil", view:"340K", like:"29K", share:"12K", comment:"4.3K"},
+      {no:3, platform:"Facebook", niche:"DIY Craft & Renovasi Low-Budget", angle:"Ubah Kamar Sempit Jadi Estetik Modal 200rb", target:"Pasangan Muda & Pemilik Rumah (23–40 th)", strong:"Before-After visual transformatif", pain:"Biaya tukang mahal, rumah terbatas", pros:"High viral index di FB Watch & Reels", cons:"Proses pengerjaan fisik cukup lama", view:"1.1M", like:"76K", share:"38K", comment:"6.1K"},
+      {no:4, platform:"Facebook", niche:"Investasi & Keuangan Keluarga", angle:"Strategi Mengatur Gaji Suami Agar Beli Rumah", target:"Keluarga Muda (26–42 th)", strong:"Edukasi emosional & perencanaan", pain:"Biaya hidup naik, tabungan stagnan", pros:"Tinggi kepercayaan & bookmark", cons:"Sensitif jika membahas nominal", view:"420K", like:"31K", share:"17K", comment:"3.9K"}
+    ],
+    summary: \`
+      <p><strong>1. Pola Copywriting & Hook:</strong> Judul bernuansa solusi rumah tangga & ekonomi keluarga memicu lonjakan share di grup-grup Facebook hingga 45K shares per postingan.</p>
+      <p><strong>2. Niche Rekomendasi Utama (Rank 1):</strong> <strong>Resep Masakan Rumahan & Kuliner</strong>. Sangat unggul di virality grup Facebook dengan 780K Views dan 8.9K komentar aktif.</p>
+      <p><strong>3. Hipotesis Eksperimen Agent 2:</strong> Format posting gambar collage dengan rincian biaya bahan per porsi akan mendorong interaksi kolom komentar hingga >10K komentar.</p>
+      <p><strong>4. Integrasi Database:</strong> File <code>database.csv</code> terstruktur rapi untuk dikoneksikan ke Supabase & Antigravity.</p>
+    \`
+  }
+};
+
+let currentPlatform = "TikTok";
+
+document.getElementById("btnResearch").addEventListener("click", function() {
+  const selected = document.querySelector('input[name="platform"]:checked');
+  if(!selected) return;
+  currentPlatform = selected.value;
+
+  const loaderBox = document.getElementById("loaderBox");
+  const logsBox = document.getElementById("logsBox");
+  const outputBox = document.getElementById("outputBox");
+
+  outputBox.style.display = "none";
+  loaderBox.style.display = "block";
+  logsBox.innerHTML = "";
+
+  const steps = [
+    \`[AGENT 1] Connecting to https://lp-multiagent-sosmed.vercel.app/ ...\`,
+    \`[AGENT 1] Scrapping trending tags & engagement metrics for \${currentPlatform}...\`,
+    \`[AGENT 1] Extracting copywriting patterns (hooks, angles, pain points)...\`,
+    \`[AGENT 1] Generating Niche Scorecard & Supabase/Antigravity database.csv...\`,
+    \`[AGENT 1] Research completed successfully for \${currentPlatform}!\`
+  ];
+
+  let stepIdx = 0;
+  const interval = setInterval(() => {
+    if(stepIdx < steps.length) {
+      logsBox.innerHTML += "<div>" + steps[stepIdx] + "</div>";
+      logsBox.scrollTop = logsBox.scrollHeight;
+      stepIdx++;
+    } else {
+      clearInterval(interval);
+      setTimeout(() => {
+        loaderBox.style.display = "none";
+        renderOutput(currentPlatform);
+      }, 400);
+    }
+  }, 400);
+});
+
+function renderOutput(platform) {
+  const data = dataset[platform];
+  if(!data) return;
+
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = data.rows.map(r => \`
+    <tr>
+      <td class="center"><b>\${r.no}</b></td>
+      <td class="center">\${r.platform}</td>
+      <td><b>\${r.niche}</b></td>
+      <td>\${r.angle}</td>
+      <td>\${r.target}</td>
+      <td>\${r.strong}</td>
+      <td>\${r.pain}</td>
+      <td><span style="color:#16a34a;font-weight:700">\${r.pros}</span></td>
+      <td><span style="color:#dc2626;font-weight:700">\${r.cons}</span></td>
+      <td class="center">\${r.view}</td>
+      <td class="center">\${r.like}</td>
+      <td class="center">\${r.share}</td>
+      <td class="center">\${r.comment}</td>
+    </tr>
+  \`).join("");
+
+  document.getElementById("summaryText").innerHTML = data.summary;
+  const today = new Date().toISOString().slice(0,10).replace(/-/g,"");
+  document.getElementById("pathInfo").innerHTML = \`📁 File Storage Path: %USERPROFILE%\\Downloads\\Content_Automation\\01_RESEARCH\\\${today}\\\${platform.toUpperCase()}_Research_RUN001\\database.csv\`;
+
+  document.getElementById("outputBox").style.display = "block";
+  document.getElementById("outputBox").scrollIntoView({behavior:"smooth"});
+}
+
+function generateCSVContent(platform) {
+  const data = dataset[platform];
+  const headers = ["No", "Platform", "Niche", "Angle", "Market Target / Audience", "Strong Point", "Pain Point", "Pros", "Cons", "View", "Like", "Share", "Comment"];
+  const rows = data.rows.map(r => [r.no, r.platform, \`"\${r.niche}"\`, \`"\${r.angle}"\`, \`"\${r.target}"\`, \`"\${r.strong}"\`, \`"\${r.pain}"\`, \`"\${r.pros}"\`, \`"\${r.cons}"\`, r.view, r.like, r.share, r.comment].join(","));
+  return [headers.join(","), ...rows].join("\n");
+}
+
+function downloadCSV() {
+  const csv = generateCSVContent(currentPlatform);
+  const blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = \`database_\${currentPlatform.toLowerCase()}.csv\`;
+  a.click();
+}
+
+function downloadBrief() {
+  const data = dataset[currentPlatform];
+  const content = \`# Research Brief — Agent 1 (\${currentPlatform})\n\n\` + data.summary.replace(/<[^>]+>/g, '');
+  const blob = new Blob([content], {type: "text/markdown;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = \`research_brief_\${currentPlatform.toLowerCase()}.md\`;
+  a.click();
+}
+
+function downloadMetrics() {
+  const data = dataset[currentPlatform];
+  const content = "Niche,View,Like,Share,Comment\n" + data.rows.map(r => \`"\${r.niche}",\${r.view},\${r.like},\${r.share},\${r.comment}\`).join("\n");
+  const blob = new Blob([content], {type: "text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = \`metrics_\${currentPlatform.toLowerCase()}.csv\`;
+  a.click();
+}
+
+function downloadSources() {
+  const content = "Source_ID,Platform,URL,Sample_Size,Reliability\nSRC-001," + currentPlatform + ",https://" + currentPlatform.toLowerCase() + ".com/trending,1000 Posts,9.5/10";
+  const blob = new Blob([content], {type: "text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = \`source_register_\${currentPlatform.toLowerCase()}.csv\`;
+  a.click();
+}
+
+function downloadHypo() {
+  const content = "# Hypotheses for Agent 2 (" + currentPlatform + ")\n\n1. High curiosity 3-sec hook increases retention rate by 30%.\n2. Value-packed carousel saves lead to higher profile conversion.\n";
+  const blob = new Blob([content], {type: "text/markdown;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = \`hypotheses_\${currentPlatform.toLowerCase()}.md\`;
+  a.click();
+}
+</script>
+</body>
+</html>`);
+        popup.document.close();
+        popup.focus();
+        return;
+      }
 
       popup.document.open();
       popup.document.write(`<!doctype html>
