@@ -66,7 +66,7 @@
 
 <section id="agents"><div class="wrap"><div class="head"><span class="kicker">The 5-Agent System</span><h2>Lima agen. Lima fokus.<br><span class="grad">Satu siklus perbaikan berkelanjutan.</span></h2><p>Setiap agen memiliki tanggung jawab dan output yang jelas. Agent 5 mengoordinasikan alur; Agent 4 menjaga kualitas dan mengembalikan pembelajaran ke riset dan kreatif.</p></div>
 <div class="agents">
-<article class="agent"><div class="agenttop"><div class="num">01</div><div><h3>Content Research & Root Cause Analyst</h3><p>Temukan peluang sebelum menginvestasikan waktu produksi.</p></div></div><div class="tags"><span class="tag">Trend research</span><span class="tag">Engagement signals</span><span class="tag">Niche scorecard</span></div><ul><li>Mengumpulkan data yang diizinkan dari platform dan sumber relevan.</li><li>Membandingkan view, like, komentar, share, dan metrik lain bila tersedia.</li><li>Menganalisis pola hook, topik, format, CTA, dan respons audiens.</li><li>Menyusun 3–4 kandidat niche, pros & cons, risiko, dan hipotesis eksperimen.</li></ul><div class="output"><b>Solusi & manfaat:</b> keputusan lebih terarah dan brief kreatif berbasis bukti.<br><b>Output:</b> research brief, source register, metrics, niche scorecard.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="1" aria-label="Buka simulasi Agent 1">Simulasi Agent 1</button></div></article>
+<article class="agent"><div class="agenttop"><div class="num">01</div><div><h3>Content Research & Root Cause Analyst</h3><p>Temukan peluang sebelum menginvestasikan waktu produksi.</p></div></div><div class="tags"><span class="tag">Trend research</span><span class="tag">Engagement signals</span><span class="tag">Niche scorecard</span><span class="tag">Apify Actors</span></div><ul><li>Mengusulkan kandidat topik/hashtag dari tren, lalu menarik metrik per post data publik lewat Apify Actors (TikTok, Instagram, Facebook).</li><li>Membandingkan view, like, komentar, share, dan metrik lain bila tersedia.</li><li>Menganalisis pola hook, topik, format, CTA, dan respons audiens.</li><li>Menghitung skor dari data nyata dengan rumus transparan, menyusun 3–4 kandidat niche, pros & cons, risiko, dan hipotesis eksperimen.</li></ul><div class="output"><b>Solusi & manfaat:</b> keputusan lebih terarah dan brief kreatif berbasis bukti.<br><b>Output:</b> research brief, source register, metrics, niche scorecard.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="1" aria-label="Buka simulasi Agent 1">Simulasi Agent 1</button></div></article>
 <article class="agent"><div class="agenttop"><div class="num">02</div><div><h3>Content Creation & Testing</h3><p>Ubah insight menjadi konsep kreatif yang siap dinilai.</p></div></div><div class="tags"><span class="tag">Hook & headline</span><span class="tag">Mockup</span><span class="tag">A/B concepts</span></div><ul><li>Membuat draft image, carousel, storyboard, naskah video, caption, dan CTA.</li><li>Menghasilkan variasi konsep dengan variabel tes yang jelas.</li><li>Memeriksa keterbacaan, format, ejaan, brand guideline, dan hak penggunaan.</li><li>Mencatat revisi serta merekomendasikan versi untuk review independen.</li></ul><div class="output"><b>Solusi & manfaat:</b> proses kreatif terstruktur, konsep mudah dibandingkan, revisi tercatat.<br><b>Output:</b> mockup, creative brief, QA checklist, test results.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="2" aria-label="Buka simulasi Agent 2">Simulasi Agent 2</button></div></article>
 <article class="agent"><div class="agenttop"><div class="num">03</div><div><h3>Content Production & Delivery</h3><p>Skalakan produksi tanpa kehilangan kendali versi.</p></div></div><div class="tags"><span class="tag">Batch production</span><span class="tag">Multi-platform assets</span><span class="tag">Publishing package</span></div><ul><li>Memproduksi aset final dari konsep yang sudah disetujui.</li><li>Mengadaptasi rasio, durasi, subtitle, thumbnail, caption, dan metadata per platform.</li><li>Menyimpan versi aset dan manifest untuk pelacakan.</li><li>Menyiapkan paket siap unggah atau menerbitkan melalui integrasi resmi yang diizinkan.</li></ul><div class="output"><b>Solusi & manfaat:</b> batch konten rapi, aset tidak mudah tertukar, delivery dapat diaudit.<br><b>Output:</b> aset final, production manifest, release checklist, publish log.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="3" aria-label="Buka simulasi Agent 3">Simulasi Agent 3</button></div></article>
 <article class="agent"><div class="agenttop"><div class="num">04</div><div><h3>Content Quality Reviewer & Critic</h3><p>Jaga standar sebelum rilis, pelajari performa sesudahnya.</p></div></div><div class="tags"><span class="tag">Independent QA</span><span class="tag">Performance review</span><span class="tag">Improvement loop</span></div><ul><li>Memeriksa akurasi, kesesuaian mockup, kualitas visual/audio, CTA, dan kebijakan platform.</li><li>Memberi status PASS, NEEDS REVISION, atau REJECT beserta alasan.</li><li>Memantau metrik pascapublikasi sesuai akses dan interval yang tersedia.</li><li>Mengubah temuan menjadi rekomendasi dan backlog eksperimen.</li></ul><div class="output"><b>Solusi & manfaat:</b> mengurangi risiko kesalahan rilis dan membuat pembelajaran terukur.<br><b>Output:</b> pre-publish review, post-publish analysis, improvement backlog.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="4" aria-label="Buka simulasi Agent 4">Simulasi Agent 4</button></div></article>
@@ -115,44 +115,71 @@
 <html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Simulasi Agent 1 — ContentFlow.AI</title>
 <style>
-:root{--bg:#0b0e17;--card:#131827;--line:#2a3246;--txt:#e8ebf5;--mut:#9aa3bd;--green:#b7f477;--gold:#f2c400;--red:#ff6b5e}
+:root{--bg:#0b0e17;--card:#131827;--line:#2a3246;--txt:#e8ebf5;--mut:#9aa3bd;--green:#b7f477;--gold:#f2c400;--red:#ff6b5e;--amber:#ffd466}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.55;padding:24px}
-main{max-width:1280px;margin:0 auto}h1{font-size:24px;margin:0}.sub{color:var(--mut);margin:4px 0 20px}
+main{max-width:1320px;margin:0 auto}h1{font-size:24px;margin:0}.sub{color:var(--mut);margin:4px 0 20px}
 h2{font-size:18px;margin:28px 0 10px}
-.input{border:2px solid var(--red);border-radius:6px;padding:18px 20px;max-width:460px}
-.input p{margin:0 0 10px}.input label{display:flex;gap:10px;align-items:center;padding:4px 0;cursor:pointer;font-size:17px}
-.input input{accent-color:var(--gold);width:18px;height:18px}
+.input{border:2px solid var(--red);border-radius:6px;padding:18px 20px;max-width:560px}
+.input p{margin:0 0 10px}.input label.r{display:flex;gap:10px;align-items:center;padding:4px 0;cursor:pointer;font-size:17px}
+.input input[type=radio]{accent-color:var(--gold);width:18px;height:18px}
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.opt label,.fld label{display:block;font-size:12px;color:var(--mut);margin-bottom:3px}
+.opt select,.fld input,.fld textarea{width:100%;background:#0c1020;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:8px;font:inherit;font-size:13px}
+.fld{margin-top:10px}.fld[hidden]{display:none}.est{font-size:12px;color:var(--mut);margin:10px 0 0}
 button.go{margin:12px 0 0 24px;background:transparent;color:var(--gold);border:3px solid var(--gold);font:700 18px Inter;padding:8px 38px;cursor:pointer}
 button.go:hover:not(:disabled),button.go:focus-visible{background:var(--gold);color:#0b0e17;outline:none}button:disabled{opacity:.45;cursor:not-allowed}
-.status{margin-top:18px;display:none;border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--card)}
+.steps{display:none;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.steps.on{display:grid}
+.stp{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card);font-size:13px}
+.stp b{display:block}.stp small{color:var(--mut);display:block;margin-top:2px}.stp i{font-style:normal;color:var(--mut);font-size:11px;letter-spacing:.08em}
+.stp.on{border-color:var(--gold)}.stp.ok{border-color:var(--green)}.stp.ok i{color:var(--green)}.stp.bad{border-color:var(--red)}.stp.bad i{color:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chips span{background:#1a2133;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px}
+.status{margin-top:14px;display:none;border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--card)}
 .status.on{display:block}.status .row{display:flex;gap:12px;align-items:center}
 .spin{width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--green);border-radius:50%;animation:r 1s linear infinite;flex:none}
 .status.err{border-color:var(--red)}.status.err .spin,.status.done .spin{display:none}@keyframes r{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.spin{animation-duration:3s}}
+@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}.opt{grid-template-columns:1fr}}
 .log{margin:10px 0 0;padding-left:20px;color:var(--mut);font-size:14px}
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
-table{border-collapse:collapse;width:100%;min-width:1180px;font-size:13px}
+table{border-collapse:collapse;width:100%;min-width:1420px;font-size:13px}
 th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
-th{background:#1a2133;text-align:center}td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+th{background:#1a2133;text-align:center}td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}td.na{color:var(--mut)}
 .badge{display:inline-block;background:#1d2a14;color:var(--green);border-radius:6px;padding:0 8px;font-weight:700}
+.src{display:inline-block;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:600;white-space:nowrap}
+.src.ok{background:#1d2a14;color:var(--green)}.src.warn{background:#3a2b00;color:var(--amber)}.src.mut{background:#1a2133;color:var(--mut)}
+.sd{display:block;font-size:11px;color:var(--mut);margin-top:4px;min-width:120px}
 .demo{background:#3a2b00;color:#ffd466;border-radius:8px;padding:8px 12px;margin:0 0 10px;font-size:14px}
 .box{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:6px 20px 12px}
 .box li{margin:6px 0}.path{font-family:Consolas,monospace;background:#0c0f19;padding:2px 6px;border-radius:4px;word-break:break-all}
 .acts[hidden]{display:none}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.acts button,.acts a{background:#171d2e;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 16px;font:600 14px Inter;cursor:pointer;text-decoration:none}
-#out{display:none}#out.on{display:block}.link{color:var(--mut)}
+#out{display:none}#out.on{display:block}.link{color:var(--mut)}.sm{font-size:13px}
 </style></head>
 <body><main>
 <h1>Simulasi Agent 1 — Content Research &amp; Root Cause Analyst</h1>
-<p class="sub">Riset niche viral per platform melalui Hermes Agent Desktop.</p>
+<p class="sub">Riset niche viral per platform: Agent 1 mengusulkan kandidat, Apify menarik metrik per post, skor dihitung dari data nyata.</p>
 
 <h2>Data Input</h2>
 <form class="input" id="f" onsubmit="return false">
   <p>Pilih salah satu Platform untuk riset niche viral:</p>
-  <label><input type="radio" name="p" value="tiktok"> TikTok</label>
-  <label><input type="radio" name="p" value="instagram"> Instagram</label>
-  <label><input type="radio" name="p" value="facebook"> Facebook</label>
+  <label class="r"><input type="radio" name="p" value="tiktok"> TikTok</label>
+  <label class="r"><input type="radio" name="p" value="instagram"> Instagram</label>
+  <label class="r"><input type="radio" name="p" value="facebook"> Facebook</label>
+  <div class="opt">
+    <div><label for="days">Periode data</label><select id="days"><option value="7">7 hari terakhir</option><option value="14">14 hari terakhir</option><option value="30">30 hari terakhir</option></select></div>
+    <div><label for="limit">Maks. post per kandidat</label><select id="limit"><option value="20">20 post</option><option value="30" selected>30 post</option><option value="50">50 post</option></select></div>
+  </div>
+  <div class="fld"><label for="kw">Kata kunci / bidang awal (opsional)</label><input id="kw" maxlength="80" placeholder="Contoh: kuliner, skincare, parenting"></div>
+  <div class="fld" id="fbwrap" hidden><label for="fburls">URL Page Facebook sebagai seed (opsional, 1 per baris — bila kosong Agent 1 yang mengusulkan)</label><textarea id="fburls" rows="3" placeholder="https://www.facebook.com/namapage"></textarea></div>
+  <p class="est" id="est">Pilih platform untuk melihat estimasi biaya.</p>
   <button class="go" id="go" type="button" disabled>Research</button>
 </form>
+
+<div class="steps" id="steps" aria-label="Tahapan riset">
+  <div class="stp" id="s1"><i>01</i><b>Usulan kandidat topik</b><small>Menunggu</small></div>
+  <div class="stp" id="s2"><i>02</i><b>Scrape metrik per post</b><small>Menunggu</small></div>
+  <div class="stp" id="s3"><i>03</i><b>Hitung skor</b><small>Menunggu</small></div>
+  <div class="stp" id="s4"><i>04</i><b>Simpan hasil</b><small>Menunggu</small></div>
+</div>
+<div class="chips" id="cand"></div>
 
 <div class="status" id="st" role="status" aria-live="polite"><div class="row"><div class="spin"></div><div><b id="msg"></b><div class="link" id="tm"></div></div></div><ol class="log" id="log"></ol><div class="acts" id="erracts" hidden><button type="button" id="demo">Lihat contoh tampilan (data ilustrasi)</button></div></div>
 
@@ -160,54 +187,90 @@ th{background:#1a2133;text-align:center}td.n{text-align:right;white-space:nowrap
   <h2>DATA OUTPUT:</h2>
   <div id="demoflag"></div>
   <div class="tw"><table>
-    <thead><tr><th rowspan="2">No</th><th rowspan="2">Platform</th><th rowspan="2">Niche</th><th rowspan="2">Angle</th><th rowspan="2">Market Target / Audience</th><th rowspan="2">Strong Point</th><th rowspan="2">Pain Point</th><th rowspan="2">Pros</th><th rowspan="2">Cons</th><th colspan="4">Jumlah Engagement</th><th rowspan="2">Skor</th></tr>
+    <thead><tr><th rowspan="2">No</th><th rowspan="2">Platform</th><th rowspan="2">Niche</th><th rowspan="2">Angle</th><th rowspan="2">Market Target / Audience</th><th rowspan="2">Strong Point</th><th rowspan="2">Pain Point</th><th rowspan="2">Pros</th><th rowspan="2">Cons</th><th colspan="4" title="Median per post dari sampel yang di-scrape">Jumlah Engagement (median per post)</th><th rowspan="2">Sampel</th><th rowspan="2">Sumber data</th><th rowspan="2">Skor</th></tr>
     <tr><th>View</th><th>Like</th><th>Share</th><th>Comment</th></tr></thead>
     <tbody id="tb"></tbody></table></div>
-  <p class="link" id="mnote" style="font-size:13px"></p>
+  <p class="link sm" id="mnote"></p>
+  <h2>Cara Skor Dihitung</h2>
+  <div class="box sm" id="formula"></div>
   <h2>Ringkasan &amp; Insight:</h2>
   <div class="box" id="ins"></div>
+  <h2>Rincian Run &amp; Penyimpanan</h2>
+  <div class="box sm" id="runs"></div>
 </section>
 </main>
 <script>
 const BRIDGE=(window.opener&&window.opener.CONTENTFLOW_BRIDGE)||'http://127.0.0.1:8787';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=n=>n==null?'N/A':new Intl.NumberFormat('id-ID').format(n);
-let t0=0,timer;
-document.querySelectorAll('input[name=p]').forEach(r=>r.onchange=()=>$('go').disabled=false);
+const num=n=>n!=null&&n!==''&&isFinite(n);
+const fmt=n=>num(n)?new Intl.NumberFormat('id-ID').format(n):'N/A';
+const pct=n=>num(n)?(n*100).toFixed(1).replace('.',',')+'%':null;
+const RATE={tiktok:1.70,instagram:1.50,facebook:2.00}; // USD per 1.000 hasil (estimasi, cek halaman Actor)
+const SRC={scrape:['Scrape per post','ok'],aggregate:['Agregat hashtag','warn'],estimate:['Estimasi','warn'],none:['Tanpa data','mut']};
+const DEF_FORMULA='Skor = 40% engagement rate + 30% views vs follower + 20% jumlah kreator berbeda + 10% konsistensi lintas minggu. Bila sebuah metrik tidak tersedia (mis. view di Facebook), bobot dinormalisasi ke metrik yang ada. Nilai N/A dibiarkan N/A, tidak diisi perkiraan.';
+let t0=0,timer,cur=0;
+const plat=()=>{const p=document.querySelector('input[name=p]:checked');return p?p.value:null};
+const fbUrls=()=>$('fburls').value.split('\n').map(s=>s.trim()).filter(s=>/^https:\/\/(www\.|m\.)?facebook\.com\//i.test(s)).slice(0,20);
+function estimate(){const p=plat();$('fbwrap').hidden=p!=='facebook';if(!p)return;
+  const n=p==='facebook'?Math.max(fbUrls().length,5):8,lim=+$('limit').value,usd=n*lim*RATE[p]/1000;
+  $('est').textContent='Estimasi biaya maks. ± $'+usd.toFixed(2).replace('.',',')+' per run ('+n+' kandidat × '+lim+' post, tarif Actor per 1.000 hasil; belum termasuk proxy/compute).'}
+document.querySelectorAll('input[name=p]').forEach(r=>r.onchange=()=>{$('go').disabled=false;estimate()});
+['limit','fburls'].forEach(i=>$(i).addEventListener('input',estimate));
 function status(msg,cls){const s=$('st');s.className='status on '+(cls||'');$('msg').textContent=msg;if(!cls){const l=document.createElement('li');l.textContent=msg;$('log').appendChild(l)}}
 function tick(on){clearInterval(timer);if(on){t0=Date.now();timer=setInterval(()=>$('tm').textContent='Berjalan '+Math.floor((Date.now()-t0)/1000)+' detik',1000)}else $('tm').textContent=''}
+function step(i,state,msg){const el=$('s'+i);if(!el)return;const m={start:'on',on:'on',done:'ok',ok:'ok',error:'bad',bad:'bad'}[state]||'';el.className='stp '+m;if(m==='on')cur=i;
+  el.querySelector('small').textContent=msg||({on:'Berjalan…',ok:'Selesai',bad:'Gagal'}[m]||'Menunggu')}
+function resetSteps(){cur=0;for(let i=1;i<=4;i++){$('s'+i).className='stp';$('s'+i).querySelector('small').textContent='Menunggu'}$('steps').className='steps on';$('cand').innerHTML=''}
+function cands(items){$('cand').innerHTML=(items||[]).slice(0,30).map(c=>`<span title="${esc(c.reason||'')}">${esc(c.label||c)}</span>`).join('')}
 function render(d,demo){
   $('demoflag').innerHTML=demo?'<div class="demo">DATA ILUSTRASI untuk pratinjau tampilan — bukan hasil scraping.</div>':'';
-  $('tb').innerHTML=d.rows.map(r=>`<tr><td>${r.no}</td><td>${esc(r.platform)}</td><td><b>${esc(r.niche)}</b></td><td>${esc(r.angle)}</td><td>${esc(r.audience)}</td><td>${esc(r.strong_point)}</td><td>${esc(r.pain_point)}</td><td>${esc(r.pros)}</td><td>${esc(r.cons)}</td><td class="n">${fmt(r.views)}</td><td class="n">${fmt(r.likes)}</td><td class="n">${fmt(r.shares)}</td><td class="n">${fmt(r.comments)}</td><td><span class="badge">${r.score==null?'N/A':esc(r.score)}</span></td></tr>`).join('');
+  const cell=(v,why)=>num(v)?`<td class="n">${fmt(v)}</td>`:`<td class="n na" title="${esc(why)}">N/A</td>`;
+  const why='Metrik tidak dibuka publik oleh platform atau tidak ada pada hasil scrape.';
+  $('tb').innerHTML=d.rows.map(r=>{const sd=r.score_detail||{},bits=[];
+    if(pct(sd.engagement_rate))bits.push('ER '+pct(sd.engagement_rate));
+    if(num(sd.views_per_follower))bits.push('V/F '+String(sd.views_per_follower).replace('.',',')+'×');
+    if(num(sd.creators))bits.push(fmt(sd.creators)+' kreator');
+    if(num(sd.weeks_seen))bits.push(sd.weeks_seen+' mgg terlihat');
+    const sc=SRC[r.source_type]||(r.source_type?[r.source_type,'mut']:['Belum dilabeli','mut']);
+    return `<tr><td>${esc(r.no)}</td><td>${esc(r.platform)}</td><td><b>${esc(r.niche)}</b></td><td>${esc(r.angle)}</td><td>${esc(r.audience)}</td><td>${esc(r.strong_point)}</td><td>${esc(r.pain_point)}</td><td>${esc(r.pros)}</td><td>${esc(r.cons)}</td>${cell(r.views,why)}${cell(r.likes,why)}${cell(r.shares,why)}${cell(r.comments,why)}<td class="n">${num(r.sample_size)?fmt(r.sample_size)+' post':'N/A'}</td><td><span class="src ${sc[1]}">${esc(sc[0])}</span></td><td><span class="badge">${r.score==null?'N/A':esc(r.score)}</span>${bits.length?`<span class="sd">${esc(bits.join(' · '))}</span>`:''}</td></tr>`}).join('');
   $('ins').innerHTML=`<p>${esc(d.summary)}</p><ul>${(d.insights||[]).map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`+(d.limitations?`<p class="link">Keterbatasan: ${esc(d.limitations)}</p>`:'');
   const notes=d.rows.filter(r=>r.metric_note).map(r=>esc(r.niche)+': '+esc(r.metric_note));
   $('mnote').innerHTML=notes.length?'<b>Catatan sumber metrik:</b><br>'+notes.join('<br>'):'';
+  $('formula').innerHTML='<p>'+esc(d.score_formula||DEF_FORMULA)+'</p>'+(d.period?`<p class="link">Periode data: ${esc(d.period)}${d.generated_at?' · diproses '+esc(d.generated_at):''}</p>`:'');
+  const runs=d.runs||[],tot=runs.reduce((a,x)=>a+(+x.cost_usd||0),0);
+  $('runs').innerHTML=(runs.length?'<ul>'+runs.map(x=>`<li>${esc(x.actor)} — ${fmt(x.items)} item${num(x.cost_usd)?' · $'+(+x.cost_usd).toFixed(2).replace('.',','):''}</li>`).join('')+'</ul>'+(tot?`<p>Total biaya Apify run: <b>$${tot.toFixed(2).replace('.',',')}</b></p>`:''):'<p class="link">Tidak ada rincian run Apify (data ilustrasi atau belum dilaporkan bridge).</p>')
+    +(d.saved_path?`<p>Hasil disimpan di <span class="path">${esc(d.saved_path)}</span> (pada komputer/server tempat Hermes berjalan).</p>`:'');
   $('out').className='on';$('out').scrollIntoView({behavior:'smooth'});
 }
 async function run(){
-  const p=document.querySelector('input[name=p]:checked');if(!p)return;
-  $('go').disabled=true;$('out').className='';$('log').innerHTML='';$('erracts').hidden=true;tick(true);status('Memulai Agent 1…');
+  const p=plat();if(!p)return;
+  $('go').disabled=true;$('out').className='';$('log').innerHTML='';$('erracts').hidden=true;resetSteps();tick(true);status('Memulai Agent 1…');
+  const body={platform:p,days:+$('days').value,limit:+$('limit').value,keyword:$('kw').value.trim(),seed_urls:p==='facebook'?fbUrls():[]};
   try{
-    const r=await fetch(BRIDGE+'/research',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({platform:p.value})});
+    const r=await fetch(BRIDGE+'/research',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!r.ok)throw new Error('HTTP '+r.status);
     const rd=r.body.getReader(),dec=new TextDecoder();let buf='',done=false;
     while(true){const{value,done:d}=await rd.read();if(d)break;buf+=dec.decode(value,{stream:true});
       let i;while((i=buf.indexOf('\n'))>=0){const line=buf.slice(0,i).trim();buf=buf.slice(i+1);if(!line)continue;const e=JSON.parse(line);
         if(e.event==='status')status(e.msg);
-        else if(e.event==='error')throw new Error(e.msg);
-        else if(e.event==='result'){done=true;status('Riset selesai.','done');render(e,false)}}}
+        else if(e.event==='stage'){step(e.step,e.state,e.msg);if(e.msg)status(e.msg)}
+        else if(e.event==='candidates')cands(e.items);
+        else if(e.event==='saved'){step(4,'ok','Tersimpan');status('Hasil disimpan di '+e.path)}
+        else if(e.event==='error'){const x=new Error(e.msg);x.fromBridge=true;throw x}
+        else if(e.event==='result'){done=true;for(let k=1;k<=4;k++)if($('s'+k).className==='stp on')step(k,'ok');status('Riset selesai.','done');render(e,false)}}}
     if(!done)throw new Error('Koneksi terputus sebelum hasil diterima.');
   }catch(e){
-    console.error('[Agent 1]',e);
+    console.error('[Agent 1]',e);if(cur)step(cur,'bad');
     const off=e instanceof TypeError;
-    status(off?'Layanan riset belum dapat dihubungi. Silakan coba lagi beberapa saat lagi.':'Riset belum dapat diselesaikan. Silakan coba lagi beberapa saat lagi.','err');$('erracts').hidden=false;
+    status(off?'Layanan riset belum dapat dihubungi. Pastikan bridge Hermes aktif, lalu coba lagi.':'Riset belum dapat diselesaikan'+(e.fromBridge&&e.message?': '+e.message:'. Silakan coba lagi beberapa saat lagi.'),'err');$('erracts').hidden=false;
   }finally{tick(false);$('go').disabled=false}
 }
 $('go').onclick=run;
-$('demo').onclick=()=>{const p=(document.querySelector('input[name=p]:checked')||{value:'tiktok'}).value;const P={tiktok:'TikTok',instagram:'Instagram',facebook:'Facebook'}[p];
-  const R=(no,niche,angle,aud,sp,pp,pr,co,v,l,s,c,sc)=>({no,platform:P,niche,angle,audience:aud,strong_point:sp,pain_point:pp,pros:pr,cons:co,views:v,likes:l,shares:s,comments:c,score:sc});
-  render({rows:[R(1,'Produktivitas kerja','Rutinitas 5 menit sebelum kerja','Pekerja kantoran 22–35','Mudah ditiru, hasil cepat','Waktu terasa habis','Hook kuat, mudah dibagikan','Pasar ramai','1200000','85000','12000','3400',82),R(2,'Keuangan pribadi','Atur gaji tanpa aplikasi rumit','Fresh graduate','Topik relevan','Bingung mulai menabung','Komentar tinggi','Risiko klaim finansial','900000','64000','15000','5200',76),R(3,'Resep hemat','Masak 3 bahan di kos','Mahasiswa & anak kos','Biaya rendah','Anggaran terbatas','Format visual jelas','Cepat jenuh','1500000','120000','9000','2100',71)].map(r=>({...r,views:+r.views,likes:+r.likes,shares:+r.shares,comments:+r.comments})),
-    summary:'Contoh tampilan ringkasan: bandingkan kandidat berdasarkan engagement dan kesiapan produksi.',insights:['Insight akan diisi dari hasil riset Hermes.','Hook singkat + manfaat jelas cenderung mendorong share.'],limitations:'Data ilustrasi.'},true)};
+$('demo').onclick=()=>{const p=plat()||'tiktok',P={tiktok:'TikTok',instagram:'Instagram',facebook:'Facebook'}[p];resetSteps();for(let i=1;i<=4;i++)step(i,'ok','Contoh');cands([{label:'#produktivitas'},{label:'#uangbulanan'},{label:'#resephemat'}]);
+  const R=(no,niche,angle,aud,sp,pp,pr,co,v,l,s,c,n,sc,sd)=>({no,platform:P,niche,angle,audience:aud,strong_point:sp,pain_point:pp,pros:pr,cons:co,views:v,likes:l,shares:s,comments:c,sample_size:n,source_type:'scrape',score:sc,score_detail:sd});
+  render({rows:[R(1,'Produktivitas kerja','Rutinitas 5 menit sebelum kerja','Pekerja kantoran 22–35','Mudah ditiru, hasil cepat','Waktu terasa habis','Hook kuat, mudah dibagikan','Pasar ramai',1200000,85000,12000,3400,30,82,{engagement_rate:.085,views_per_follower:3.1,creators:21,weeks_seen:3}),R(2,'Keuangan pribadi','Atur gaji tanpa aplikasi rumit','Fresh graduate','Topik relevan','Bingung mulai menabung','Komentar tinggi','Risiko klaim finansial',900000,64000,null,5200,30,76,{engagement_rate:.077,views_per_follower:2.4,creators:17,weeks_seen:2}),R(3,'Resep hemat','Masak 3 bahan di kos','Mahasiswa & anak kos','Biaya rendah','Anggaran terbatas','Format visual jelas','Cepat jenuh',1500000,120000,9000,2100,30,71,{engagement_rate:.088,views_per_follower:1.9,creators:12,weeks_seen:1})],
+    summary:'Contoh tampilan ringkasan: kandidat dibandingkan dari metrik per post yang di-scrape.',insights:['Insight akan diisi dari hasil riset Hermes.','Hook singkat + manfaat jelas cenderung mendorong share.'],limitations:'Data ilustrasi.',period:'7 hari terakhir',runs:[{actor:'clockworks/tiktok-scraper',items:90,cost_usd:0.15}],saved_path:'Downloads\\Content_Automation\\…'},true)};
 </script></body></html>
 </template>
 <script>
