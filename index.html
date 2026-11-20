@@ -273,6 +273,151 @@ $('demo').onclick=()=>{const p=plat()||'tiktok',P={tiktok:'TikTok',instagram:'In
     summary:'Contoh tampilan ringkasan: kandidat dibandingkan dari metrik per post yang di-scrape.',insights:['Insight akan diisi dari hasil riset Hermes.','Hook singkat + manfaat jelas cenderung mendorong share.'],limitations:'Data ilustrasi.',period:'7 hari terakhir',runs:[{actor:'clockworks/tiktok-scraper',items:90,cost_usd:0.15}],saved_path:'Downloads\\Content_Automation\\…'},true)};
 </script></body></html>
 </template>
+<template id="agent2-sim">
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulasi Agent 2 — ContentFlow.AI</title>
+<style>
+:root{--bg:#0b0e17;--card:#131827;--line:#2a3246;--txt:#e8ebf5;--mut:#9aa3bd;--green:#b7f477;--gold:#f2c400;--red:#ff6b5e;--amber:#ffd466}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.55;padding:24px}
+main{max-width:1320px;margin:0 auto}h1{font-size:24px;margin:0}.sub{color:var(--mut);margin:4px 0 20px}
+h2{font-size:18px;margin:28px 0 10px}
+.input{border:2px solid var(--red);border-radius:6px;padding:18px 20px;max-width:560px}
+.input p{margin:0 0 10px}.input label.r{display:flex;gap:10px;align-items:center;padding:4px 0;cursor:pointer;font-size:17px}
+.input input[type=radio]{accent-color:var(--gold);width:18px;height:18px}
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.opt label,.fld label{display:block;font-size:12px;color:var(--mut);margin-bottom:3px}
+.opt select,.fld input,.fld textarea{width:100%;background:#0c1020;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:8px;font:inherit;font-size:13px}
+.fld{margin-top:10px}.fld[hidden]{display:none}.est{font-size:12px;color:var(--mut);margin:10px 0 0}
+button.go{margin:12px 0 0 24px;background:transparent;color:var(--gold);border:3px solid var(--gold);font:700 18px Inter;padding:8px 38px;cursor:pointer}
+button.go:hover:not(:disabled),button.go:focus-visible{background:var(--gold);color:#0b0e17;outline:none}button:disabled{opacity:.45;cursor:not-allowed}
+.steps{display:none;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.steps.on{display:grid}
+.stp{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card);font-size:13px}
+.stp b{display:block}.stp small{color:var(--mut);display:block;margin-top:2px}.stp i{font-style:normal;color:var(--mut);font-size:11px;letter-spacing:.08em}
+.stp.on{border-color:var(--gold)}.stp.ok{border-color:var(--green)}.stp.ok i{color:var(--green)}.stp.bad{border-color:var(--red)}.stp.bad i{color:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chips span{background:#1a2133;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px}
+.status{margin-top:14px;display:none;border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--card)}
+.status.on{display:block}.status .row{display:flex;gap:12px;align-items:center}
+.spin{width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--green);border-radius:50%;animation:r 1s linear infinite;flex:none}
+.status.err{border-color:var(--red)}.status.err .spin,.status.done .spin{display:none}@keyframes r{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spin{animation-duration:3s}}
+@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}.opt{grid-template-columns:1fr}}
+.log{margin:10px 0 0;padding-left:20px;color:var(--mut);font-size:14px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:1420px;font-size:13px}
+th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+th{background:#1a2133;text-align:center}td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}td.na{color:var(--mut)}
+.badge{display:inline-block;background:#1d2a14;color:var(--green);border-radius:6px;padding:0 8px;font-weight:700}
+.src{display:inline-block;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:600;white-space:nowrap}
+.src.ok{background:#1d2a14;color:var(--green)}.src.warn{background:#3a2b00;color:var(--amber)}.src.mut{background:#1a2133;color:var(--mut)}
+.sd{display:block;font-size:11px;color:var(--mut);margin-top:4px;min-width:120px}
+.demo{background:#3a2b00;color:#ffd466;border-radius:8px;padding:8px 12px;margin:0 0 10px;font-size:14px}
+.box{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:6px 20px 12px}
+.box li{margin:6px 0}.path{font-family:Consolas,monospace;background:#0c0f19;padding:2px 6px;border-radius:4px;word-break:break-all}
+.acts[hidden]{display:none}.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.acts button,.acts a{background:#171d2e;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 16px;font:600 14px Inter;cursor:pointer;text-decoration:none}
+#out{display:none}#out.on{display:block}.link{color:var(--mut)}.sm{font-size:13px}
+.ck{display:inline-flex;gap:6px;align-items:center;background:#1a2133;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--txt);margin:0;cursor:pointer}.ck input{accent-color:var(--gold)}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.g3 h3{margin:10px 0 6px;font-size:15px;color:var(--green)}.g3 p{margin:6px 0}
+.nc{margin:0 0 22px}.nc h3{margin:0 0 8px;font-size:16px}.thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.th{margin:0;width:120px}.th img{width:120px;height:auto;border:1px solid var(--line);border-radius:8px;display:block}.th figcaption{font-size:11px;color:var(--mut);margin-top:3px}
+</style></head>
+<body><main>
+<h1>Simulasi Agent 2 — Content Creation &amp; Testing</h1>
+<p class="sub">Agent 2 membaca database.csv hasil riset Agent 1, lalu menyiapkan creative brief, konsep, mockup, naskah, QA checklist, dan rencana tes per platform.</p>
+
+<h2>Data Input</h2>
+<form class="input" id="f" onsubmit="return false">
+  <p>Pilih Platform (sumber data: database.csv hasil riset Agent 1):</p>
+  <label class="r"><input type="radio" name="p" value="tiktok"> TikTok</label>
+  <label class="r"><input type="radio" name="p" value="instagram"> Instagram</label>
+  <label class="r"><input type="radio" name="p" value="facebook"> Facebook</label>
+  <div class="fld" id="runwrap" hidden><label for="runsel">Data riset Agent 1</label><select id="runsel"></select>
+    <label style="margin-top:10px">Niche yang dibuatkan konten (maks. 4)</label><div class="chips" id="pick"></div></div>
+  <div class="opt"><div><label for="nc">Konsep per niche</label><select id="nc"><option value="3">3 konsep</option><option value="4" selected>4 konsep</option><option value="5">5 konsep</option></select></div></div>
+  <p class="est" id="est">Pilih platform untuk memuat hasil riset Agent 1.</p>
+  <button class="go" id="go" type="button" disabled>Create</button>
+</form>
+
+<div class="steps" id="steps" aria-label="Tahapan Agent 2">
+  <div class="stp" id="s1"><i>01</i><b>Baca database.csv</b><small>Menunggu</small></div>
+  <div class="stp" id="s2"><i>02</i><b>Brief &amp; konsep</b><small>Menunggu</small></div>
+  <div class="stp" id="s3"><i>03</i><b>QA &amp; rencana tes</b><small>Menunggu</small></div>
+  <div class="stp" id="s4"><i>04</i><b>Simpan draft</b><small>Menunggu</small></div>
+</div>
+<div class="status" id="st" role="status" aria-live="polite"><div class="row"><div class="spin"></div><div><b id="msg"></b><div class="link" id="tm"></div></div></div><ol class="log" id="log"></ol></div>
+
+<section id="out">
+  <h2>DATA OUTPUT:</h2>
+  <div id="niches"></div>
+  <h2>Ringkasan &amp; Insight:</h2>
+  <div class="g3"><div class="box sm"><h3>Creative Brief</h3><div id="sbrief"></div></div><div class="box sm"><h3>QA Checklist</h3><div id="sqa"></div></div><div class="box sm"><h3>Test Results</h3><div id="stest"></div></div></div>
+  <div class="box" id="ins" style="margin-top:12px"></div>
+  <h2>Kalender Kreatif</h2>
+  <div class="tw"><table style="min-width:640px"><thead><tr><th>Niche</th><th>Hari</th><th>Konsep</th><th>Format</th><th>Slot</th><th>Perlu rekam</th></tr></thead><tbody id="cal"></tbody></table></div>
+  <p class="link sm" id="gen"></p>
+</section>
+</main>
+<script>
+const BRIDGE=(window.opener&&window.opener.CONTENTFLOW_BRIDGE)||'http://127.0.0.1:8787';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let runs=[],t0=0,timer;
+const plat=()=>{const p=document.querySelector('input[name=p]:checked');return p?p.value:null};
+const fd=d=>d.slice(6,8)+'/'+d.slice(4,6)+'/'+d.slice(0,4);
+const checked=()=>[...document.querySelectorAll('#pick input:checked')].map(i=>+i.value);
+function status(msg,cls){const s=$('st');s.className='status on '+(cls||'');$('msg').textContent=msg;if(!cls){const l=document.createElement('li');l.textContent=msg;$('log').appendChild(l)}}
+function tick(on){clearInterval(timer);if(on){t0=Date.now();timer=setInterval(()=>$('tm').textContent='Berjalan '+Math.floor((Date.now()-t0)/1000)+' detik',1000)}else $('tm').textContent=''}
+function step(i,state,msg){const el=$('s'+i);if(!el)return;const m={start:'on',done:'ok',error:'bad'}[state]||'';el.className='stp '+m;if(msg)el.querySelector('small').textContent=msg}
+function resetSteps(){$('steps').className='steps on';for(let i=1;i<=4;i++){$('s'+i).className='stp';$('s'+i).querySelector('small').textContent='Menunggu'}}
+function upd(){const n=checked().length;$('go').disabled=!n}
+async function loadRuns(){
+  const p=plat();if(!p)return;$('go').disabled=true;$('runwrap').hidden=true;$('est').textContent='Membaca hasil riset Agent 1…';
+  try{const r=await fetch(BRIDGE+'/research-runs?platform='+p);if(!r.ok)throw new Error('HTTP '+r.status);runs=(await r.json()).runs||[]}
+  catch(e){console.error('[Agent 2]',e);runs=[];$('est').textContent='Layanan belum dapat dihubungi. Silakan coba lagi beberapa saat lagi.';return}
+  if(!runs.length){$('est').textContent='Belum ada data riset untuk platform ini. Jalankan Simulasi Agent 1 terlebih dahulu.';return}
+  $('runsel').innerHTML=runs.map((r,i)=>`<option value="${i}">${fd(r.date)} · ${esc(r.run_id)} · ${r.niches.length} niche</option>`).join('');
+  $('runwrap').hidden=false;$('est').textContent='Tanpa biaya Apify: Agent 2 memakai model Hermes Anda.';pick();
+}
+function pick(){const r=runs[+$('runsel').value];if(!r)return;
+  $('pick').innerHTML=r.niches.slice(0,8).map((n,i)=>`<label class="ck"><input type="checkbox" value="${n.no}" ${i<4?'checked':''}> ${n.no}. ${esc(n.niche)}${n.score!=null?' · skor '+n.score:''}</label>`).join('');
+  document.querySelectorAll('#pick input').forEach(i=>i.onchange=()=>{if(checked().length>4)i.checked=false;upd()});upd()}
+const STL={'AWAITING-REVIEW':['Menunggu review','ok'],'QA-FLAG':['Perlu perbaikan','warn']};
+function render(d){
+  $('niches').innerHTML=d.niches.map(n=>{
+    const rows=n.concepts.map(c=>{const s=STL[c.status]||[c.status,'mut'];return `<tr><td><b>${esc(c.id)}</b></td><td>${esc(c.parent_id||'induk')}</td><td>${esc(c.format)}</td><td>${esc(c.angle)}</td><td>${esc(c.test_variable)}</td><td>${esc(c.hook)}</td><td>${esc(c.headline)}</td><td>${esc((c.caption||'').slice(0,140))}${(c.caption||'').length>140?'…':''}</td><td>${esc(c.cta)}</td><td>${c.needs_recording?'Ya':'Tidak'}</td><td><span class="src ${s[1]}">${esc(s[0])}</span><span class="sd">${c.qa_pass} lolos · ${c.qa_flag} perbaiki · ${c.qa_manual} manual</span></td></tr>`}).join('');
+    const th=n.concepts.flatMap(c=>c.mockups.map(m=>`<figure class="th"><img alt="Mockup ${esc(c.id)}" src="${esc('data:image/svg+xml;charset=utf-8,'+encodeURIComponent(m.svg))}"><figcaption>${esc(c.id)} · ${esc(c.format)}${c.slides_total>1?' · '+c.slides_total+' slide':''}</figcaption></figure>`)).join('');
+    return `<div class="nc"><h3>${n.no}. ${esc(n.niche)} <span class="badge">${esc(n.campaign_id)}</span></h3><div class="tw"><table style="min-width:1180px"><thead><tr><th>ID</th><th>Induk</th><th>Format</th><th>Angle</th><th>Variabel tes</th><th>Hook</th><th>Headline</th><th>Caption</th><th>CTA</th><th>Rekam</th><th>Status QA</th></tr></thead><tbody>${rows}</tbody></table></div>${th?`<div class="thumbs">${th}</div>`:''}</div>`}).join('');
+  const t=d.totals;
+  $('sbrief').innerHTML=d.niches.map(n=>`<p><b>${esc(n.niche)}</b><br>${esc(n.brief.objective)}<br><span class="link">Pesan utama: ${esc(n.brief.key_message)}</span></p>`).join('');
+  $('sqa').innerHTML=`<p>${t.concepts} konsep diperiksa otomatis: ${t.concepts-t.flag} tanpa temuan, <b>${t.flag} ditandai perlu perbaikan</b>.</p><p>${t.manual_items} item butuh verifikasi manusia (hak audio, klaim, aset visual, brand guideline).</p>`+(d.qa_flags.length?`<ul>${d.qa_flags.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'');
+  $('stest').innerHTML=d.niches.map(n=>`<p><b>${esc(n.niche)}</b><br>Variabel: ${esc(n.test_plan.variable)}<br>Metrik: ${esc(n.test_plan.metric)} · Sukses: ${esc(n.test_plan.success_criteria)} · ${n.test_plan.duration_days} hari<br><span class="link">${esc(n.benchmark)}</span></p>`).join('')+'<p class="link">Hasil performa belum ada: konten belum dipublikasikan, jadi tidak ada angka performa yang dilaporkan.</p>';
+  $('ins').innerHTML=`<p>Agent 2 menyiapkan <b>${t.concepts} konsep</b> (${t.parents} induk, ${t.derived} variasi turunan) dari ${d.niches.length} niche di ${esc(d.platform)}. <b>${t.record} konsep</b> perlu direkam atau dibuat. Status <i>Menunggu review</i> berarti pemeriksaan otomatis lolos, bukan persetujuan akhir.</p>`+(d.niches.some(n=>n.insights.length)?`<ul>${d.niches.flatMap(n=>n.insights.map(i=>`<li><b>${esc(n.niche)}:</b> ${esc(i)}</li>`)).join('')}</ul>`:'');
+  $('cal').innerHTML=d.niches.flatMap(n=>n.calendar.map(x=>{const c=n.concepts.find(z=>z.id===x.concept_id)||{};return `<tr><td>${esc(n.niche)}</td><td>${x.day}</td><td>${esc(x.concept_id)}</td><td>${esc(c.format||'')}</td><td>${esc(x.slot)}</td><td>${c.needs_recording?'Ya':'Tidak'}</td></tr>`})).join('');
+  $('gen').textContent='Dibuat '+d.generated_at+' · sumber: database.csv Agent 1 · mockup berupa draft visual, bukan aset final.';
+  $('out').className='on';$('out').scrollIntoView({behavior:'smooth'});
+}
+async function run(){
+  const p=plat(),r=runs[+$('runsel').value];if(!p||!r)return;
+  $('go').disabled=true;$('out').className='';$('log').innerHTML='';resetSteps();tick(true);status('Memulai Agent 2…');
+  try{
+    const res=await fetch(BRIDGE+'/creation',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({platform:p,run_id:r.id,niches:checked(),concepts:+$('nc').value})});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const rd=res.body.getReader(),dec=new TextDecoder();let buf='',done=false;
+    while(true){const{value,done:d}=await rd.read();if(d)break;buf+=dec.decode(value,{stream:true});
+      let i;while((i=buf.indexOf('\n'))>=0){const line=buf.slice(0,i).trim();buf=buf.slice(i+1);if(!line)continue;const e=JSON.parse(line);
+        if(e.event==='stage'){step(e.step,e.state,e.state==='done'?'Selesai':'Berjalan');if(e.msg)status(e.msg)}
+        else if(e.event==='error'){const x=new Error(e.msg);x.fromBridge=true;throw x}
+        else if(e.event==='result'){done=true;status('Selesai.','done');render(e)}}}
+    if(!done)throw new Error('Koneksi terputus sebelum hasil diterima.');
+  }catch(e){
+    console.error('[Agent 2]',e);for(let k=1;k<=4;k++)if($('s'+k).className==='stp on')step(k,'error','Gagal');
+    status(e.fromBridge?'Creation belum dapat diselesaikan: '+e.message:(e instanceof TypeError?'Layanan belum dapat dihubungi. Silakan coba lagi beberapa saat lagi.':'Creation belum dapat diselesaikan. Silakan coba lagi beberapa saat lagi.'),'err');
+  }finally{tick(false);upd()}
+}
+document.querySelectorAll('input[name=p]').forEach(r=>r.onchange=loadRuns);
+$('runsel').onchange=pick;$('go').onclick=run;
+</script></body></html>
+
+</template>
+
 <script>
   // GANTI nomor ini dengan nomor WhatsApp bisnis format internasional, tanpa +, spasi, atau strip.
   const WHATSAPP_NUMBER = "6285117580176";
@@ -354,12 +499,45 @@ $('demo').onclick=()=>{const p=plat()||'tiktok',P={tiktok:'TikTok',instagram:'In
     close.focus();
   }
 
+  function openAgent2Simulation() {
+    const html = document.getElementById("agent2-sim").innerHTML;
+    let popup = null;
+    try {
+      popup = window.open("", "contentflow_agent_2", "popup=yes,width=1360,height=860,resizable=yes,scrollbars=yes");
+    } catch (e) {}
+    if (popup && !popup.closed) {
+      popup.document.open();
+      popup.document.write(html);
+      popup.document.close();
+      popup.focus();
+      return;
+    }
+    // Cadangan bila pop-up diblokir: tampilkan simulasi di dalam halaman.
+    const box = document.createElement("div");
+    box.style.cssText = "position:fixed;inset:0;z-index:9999;background:#0b0e17;display:flex;flex-direction:column";
+    const bar = document.createElement("div");
+    bar.style.cssText = "display:flex;justify-content:flex-end;padding:8px 12px;background:#0a0d15";
+    const close = document.createElement("button");
+    close.type = "button";
+    close.textContent = "Tutup simulasi";
+    close.style.cssText = "background:transparent;color:#f2c400;border:2px solid #f2c400;font:700 14px Inter,system-ui,sans-serif;padding:6px 18px;cursor:pointer";
+    close.onclick = function() { box.remove(); };
+    bar.appendChild(close);
+    const frame = document.createElement("iframe");
+    frame.style.cssText = "flex:1;border:0;width:100%;background:#0b0e17";
+    frame.srcdoc = html;
+    box.append(bar, frame);
+    document.body.appendChild(box);
+    close.focus();
+  }
+
   document.querySelectorAll("[data-agent-simulation]").forEach(function(button) {
     button.addEventListener("click", function() {
       const agentNumber = button.getAttribute("data-agent-simulation");
       const agent = AGENT_SIMULATIONS[agentNumber];
       if (!agent) return;
       if (agentNumber === "1") { openAgent1Simulation(); return; }
+      if (agentNumber === "2") { openAgent2Simulation(); return; }
 
       const popup = window.open("", "contentflow_agent_" + agentNumber,
         "popup=yes,width=1100,height=760,resizable=yes,scrollbars=yes");
