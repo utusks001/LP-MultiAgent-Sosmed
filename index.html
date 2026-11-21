@@ -494,6 +494,7 @@ th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-alig
     <label style="margin-top:10px">Campaign yang diproduksi (maks. 6)</label><div class="chips" id="pick"></div></div>
   <p class="est" id="est">Pilih platform untuk memuat draft mockup Agent 2.</p>
   <button class="go" id="go" type="button" disabled>Produce</button>
+  <button class="go" id="demo" type="button" style="margin-left:12px;font-size:14px;padding:8px 20px;border-width:2px">Contoh Demo</button>
 </form>
 
 <div class="steps" id="steps" aria-label="Tahapan Agent 3">
@@ -516,7 +517,7 @@ th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-alig
 </section>
 </main>
 <script>
-const BRIDGE=(window.opener&&window.opener.CONTENTFLOW_BRIDGE)||'http://127.0.0.1:8787';
+const BRIDGE=(window.opener&&window.opener.CONTENTFLOW_BRIDGE_AGENT3)||'http://127.0.0.1:8788';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let drafts=[],t0=0,timer;
@@ -531,7 +532,7 @@ function upd(){$('go').disabled=!checked().length}
 async function loadDrafts(){
   const p=plat();if(!p)return;$('go').disabled=true;$('campwrap').hidden=true;$('est').textContent='Membaca draft mockup Agent 2…';
   try{const r=await fetch(BRIDGE+'/creation-drafts?platform='+p);if(!r.ok)throw new Error('HTTP '+r.status);drafts=(await r.json()).drafts||[]}
-  catch(e){console.error('[Agent 3]',e);drafts=[];$('est').textContent='Layanan belum dapat dihubungi. Pastikan bridge Hermes aktif, lalu coba lagi.';return}
+  catch(e){console.error('[Agent 3]',e);drafts=[];$('est').textContent=/HTTP 404/.test(e.message)?'Bridge aktif, tetapi endpoint /creation-drafts belum tersedia. Perbarui bridge Hermes, atau klik Contoh Demo untuk melihat tampilan output.':'Bridge Hermes tidak dapat dihubungi di '+BRIDGE+'. Pastikan bridge aktif, atau klik Contoh Demo untuk melihat tampilan output.';return}
   if(!drafts.length){$('est').textContent='Belum ada draft mockup untuk platform ini. Jalankan Simulasi Agent 2 terlebih dahulu.';return}
   $('campsel').innerHTML=drafts.map((d,i)=>`<option value="${i}">${fd(d.date)} · ${esc(d.niche)} · ${d.campaigns.length} campaign</option>`).join('');
   $('campwrap').hidden=false;$('est').textContent='Tanpa biaya Apify: Agent 3 memakai model Hermes Anda.';pick();
@@ -569,6 +570,14 @@ async function run(){
     status(e.fromBridge?'Production belum dapat diselesaikan: '+e.message:(e instanceof TypeError?'Layanan belum dapat dihubungi. Pastikan bridge Hermes aktif, lalu coba lagi.':'Production belum dapat diselesaikan. Silakan coba lagi beberapa saat lagi.'),'err');
   }finally{tick(false);upd()}
 }
+
+$('demo').onclick=()=>{const P={tiktok:'TikTok',instagram:'Instagram',facebook:'Facebook'}[plat()||'tiktok'];resetSteps();for(let i=1;i<=4;i++)step(i,'done','Contoh');status('Data contoh (ilustrasi, bukan hasil produksi nyata).','done');
+  const d8=new Date().toISOString().slice(0,10).replace(/-/g,''),pl=P.toUpperCase();
+  const A=(f,fmt,ratio,dur,st)=>({filename:d8+'_'+pl+'_Productivity_'+f+'_CMP001_v01_'+st+(fmt==='Short video'?'.mp4':'.png'),format:fmt,ratio:ratio,duration:dur,caption:true,thumbnail:true,status:st});
+  render({platform:P,generated_at:new Date().toLocaleString('id-ID'),totals:{campaigns:1,assets:3,qa_pass:2,qa_flag:1,manual_items:3},
+    campaigns:[{niche:'Produktivitas kerja',campaign_id:'CMP001',asset_version:'v01',assets:[A('CAROUSEL','Carousel','4:5',null,'QA-PASS'),A('IMAGE','Image','1:1',null,'QA-PASS'),A('SHORTVIDEO','Short video','9:16','00:20','AWAITING-APPROVAL')],manifest:{note:'Contoh: versi, ukuran, dan checksum tercatat per aset.'},checklist:{pass:9,flag:1,manual:3}}],
+    publish_log:[{time:'—',campaign_id:'CMP001',action:'Paket rilis diajukan ke Telegram BOT 1',status:'MENUNGGU'}],
+    insights:['Contoh insight: carousel 4:5 siap diajukan; short video menunggu approval.','Data ilustrasi, bukan hasil produksi nyata.']})};
 document.querySelectorAll('input[name=p]').forEach(r=>r.onchange=loadDrafts);
 $('campsel').onchange=pick;$('go').onclick=run;
 </script></body></html>
@@ -623,6 +632,8 @@ $('campsel').onchange=pick;$('go').onclick=run;
 
   // ===== Integrasi Agent 1 — Hermes Agent Desktop (bridge lokal) =====
   window.CONTENTFLOW_BRIDGE = window.CONTENTFLOW_BRIDGE || "http://127.0.0.1:8787";
+  // Bridge Agent 3 (agent3_bridge.py). Ubah ke 8787 bila endpoint-nya sudah digabung ke bridge utama.
+  window.CONTENTFLOW_BRIDGE_AGENT3 = window.CONTENTFLOW_BRIDGE_AGENT3 || "http://127.0.0.1:8788";
 
   function openAgent1Simulation() {
     const html = document.getElementById("agent1-sim").innerHTML;
