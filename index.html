@@ -514,13 +514,14 @@ th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-alig
   <div class="g3"><div class="box sm"><h3>Production Manifest</h3><div id="smf"></div></div><div class="box sm"><h3>Release Checklist</h3><div id="schk"></div></div><div class="box sm"><h3>Publish Log</h3><div id="slog"></div></div></div>
   <div class="box" id="ins" style="margin-top:12px"></div>
   <p class="link sm" id="gen"></p>
+  <div style="margin-top:12px"><button class="go" id="tgbtn" type="button" style="margin:0;font-size:14px;padding:8px 20px;border-width:2px">Kirim ke Telegram BOT 1 untuk approval</button> <span class="link sm" id="tgmsg"></span></div>
 </section>
 </main>
 <script>
-const BRIDGE=(window.opener&&window.opener.CONTENTFLOW_BRIDGE_AGENT3)||'http://127.0.0.1:8788';
+const BRIDGE=(window.opener&&window.opener.CONTENTFLOW_BRIDGE_AGENT3)||(window.opener&&window.opener.CONTENTFLOW_BRIDGE)||'http://127.0.0.1:8787';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let drafts=[],t0=0,timer;
+let drafts=[],t0=0,timer,last=null;
 const plat=()=>{const p=document.querySelector('input[name=p]:checked');return p?p.value:null};
 const fd=d=>d.slice(6,8)+'/'+d.slice(4,6)+'/'+d.slice(0,4);
 const checked=()=>[...document.querySelectorAll('#pick input:checked')].map(i=>i.value);
@@ -542,6 +543,7 @@ function pick(){const d=drafts[+$('campsel').value];if(!d)return;
   document.querySelectorAll('#pick input').forEach(i=>i.onchange=()=>{if(checked().length>6)i.checked=false;upd()});upd()}
 const STL={'QA-PASS':['Lolos QA','ok'],'AWAITING-APPROVAL':['Menunggu approval','warn'],'QA-FLAG':['Perlu perbaikan','warn']};
 function render(d){
+  last=d;$('tgmsg').textContent='';
   const t=d.totals||{};
   $('kpi').innerHTML=[['Campaign',t.campaigns],['Aset final',t.assets],['Lolos QA',t.qa_pass],['Perlu perbaikan',t.qa_flag],['Item manual',t.manual_items]].map(x=>`<div><b>${esc(x[1]==null?0:x[1])}</b><span>${x[0]}</span></div>`).join('');
   $('assets').innerHTML=d.campaigns.map(c=>`<div class="nc"><h3>${esc(c.niche)} <span class="badge">${esc(c.campaign_id)}</span> <span class="badge">${esc(c.asset_version)}</span></h3><div class="tw"><table><thead><tr><th>Nama file</th><th>Format</th><th>Rasio / durasi</th><th>Caption &amp; thumbnail</th><th>Status</th></tr></thead><tbody>${c.assets.map(a=>{const s=STL[a.status]||[a.status,'mut'];return `<tr><td class="mono">${esc(a.filename)}</td><td>${esc(a.format)}</td><td>${esc(a.ratio||'')}${a.duration?' · '+esc(a.duration):''}</td><td>${a.caption?'Caption ✓':'Caption –'} · ${a.thumbnail?'Thumbnail ✓':'Thumbnail –'}</td><td><span class="src ${s[1]}">${esc(s[0])}</span></td></tr>`}).join('')}</tbody></table></div></div>`).join('');
@@ -578,6 +580,20 @@ $('demo').onclick=()=>{const P={tiktok:'TikTok',instagram:'Instagram',facebook:'
     campaigns:[{niche:'Produktivitas kerja',campaign_id:'CMP001',asset_version:'v01',assets:[A('CAROUSEL','Carousel','4:5',null,'QA-PASS'),A('IMAGE','Image','1:1',null,'QA-PASS'),A('SHORTVIDEO','Short video','9:16','00:20','AWAITING-APPROVAL')],manifest:{note:'Contoh: versi, ukuran, dan checksum tercatat per aset.'},checklist:{pass:9,flag:1,manual:3}}],
     publish_log:[{time:'—',campaign_id:'CMP001',action:'Paket rilis diajukan ke Telegram BOT 1',status:'MENUNGGU'}],
     insights:['Contoh insight: carousel 4:5 siap diajukan; short video menunggu approval.','Data ilustrasi, bukan hasil produksi nyata.']})};
+
+$('tgbtn').onclick=async()=>{
+  if(!last||!last.campaigns||!last.campaigns.length)return;
+  if(!last.platform_key&&!plat()){$('tgmsg').textContent='Pilih platform dulu.';return}
+  $('tgbtn').disabled=true;$('tgmsg').textContent='Mengirim…';
+  try{
+    for(const c of last.campaigns){
+      const r=await fetch(BRIDGE+'/telegram/review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({stage:'release',platform:(plat()||'tiktok'),niche:c.niche,campaign:c.campaign_id})});
+      const j=await r.json();if(!r.ok)throw new Error(j.error||('HTTP '+r.status));
+    }
+    $('tgmsg').textContent='Terkirim. Cek Telegram BOT 1 untuk Setujui / Revisi / Tolak.';
+  }catch(e){$('tgmsg').textContent='Gagal: '+e.message;console.error('[Agent 3]',e)}
+  finally{$('tgbtn').disabled=false}
+};
 document.querySelectorAll('input[name=p]').forEach(r=>r.onchange=loadDrafts);
 $('campsel').onchange=pick;$('go').onclick=run;
 </script></body></html>
@@ -633,7 +649,7 @@ $('campsel').onchange=pick;$('go').onclick=run;
   // ===== Integrasi Agent 1 — Hermes Agent Desktop (bridge lokal) =====
   window.CONTENTFLOW_BRIDGE = window.CONTENTFLOW_BRIDGE || "http://127.0.0.1:8787";
   // Bridge Agent 3 (agent3_bridge.py). Ubah ke 8787 bila endpoint-nya sudah digabung ke bridge utama.
-  window.CONTENTFLOW_BRIDGE_AGENT3 = window.CONTENTFLOW_BRIDGE_AGENT3 || "http://127.0.0.1:8788";
+  window.CONTENTFLOW_BRIDGE_AGENT3 = window.CONTENTFLOW_BRIDGE_AGENT3 || window.CONTENTFLOW_BRIDGE;
 
   function openAgent1Simulation() {
     const html = document.getElementById("agent1-sim").innerHTML;
