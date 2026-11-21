@@ -26,13 +26,26 @@
 .simulation-btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media(max-width:620px){.simulation-btn{width:100%;min-width:0}}
 
+
+/* Multi-Agent Operating Framework */
+.fw{display:grid;gap:12px;max-width:860px;margin:0 auto}
+.fw .arrow{text-align:center;color:var(--muted);line-height:1}
+.fw .node{border:1px solid var(--line);border-radius:14px;padding:16px 20px;text-align:center;background:var(--panel)}
+.fw .node b{display:block;font-size:1.05rem;letter-spacing:.02em}.fw .node small{color:var(--muted);font-size:.82rem}
+.fw .bot1{background:linear-gradient(135deg,#1c3558,#122542);border-color:#2f5a8f}
+.fw .bot2{background:linear-gradient(135deg,#1c4a37,#143527);border-color:#2f8f66}
+.fw .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fw .ag{text-align:left;background:var(--panel2)}.fw .ag span{display:block;color:var(--green);font-size:.72rem;font-weight:900;letter-spacing:.12em}
+.fw .ag em{display:block;font-style:normal;font-weight:700;margin:2px 0}
+.fw .ag.hl{border-color:#f2c400}
+@media(max-width:620px){.fw .pair{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <!-- SETUP: ganti nomor WhatsApp pada WHATSAPP_NUMBER di bagian script. Integrasi Hermes/Telegram/API perlu backend terpisah. -->
 <header class="nav"><div class="wrap navin">
 <a class="brand" href="#home"><span class="mark">C</span>ContentFlow<span style="color:var(--green)">.AI</span></a>
-<nav class="links"><a href="#solusi">Solusi</a><a href="#agents">5 Agen AI</a><a href="#workflow">Cara Kerja</a><a href="#usecases">Use Case</a><a href="#faq">FAQ</a></nav>
+<nav class="links"><a href="#solusi">Solusi</a><a href="#agents">5 Agen AI</a><a href="#framework">Framework</a><a href="#workflow">Cara Kerja</a><a href="#usecases">Use Case</a><a href="#faq">FAQ</a></nav>
 <a class="btn" href="#konsultasi">Diskusikan Workflow ↗</a>
 </div></header>
 <main>
@@ -71,6 +84,19 @@
 <article class="agent"><div class="agenttop"><div class="num">03</div><div><h3>Content Production & Delivery</h3><p>Skalakan produksi tanpa kehilangan kendali versi.</p></div></div><div class="tags"><span class="tag">Batch production</span><span class="tag">Multi-platform assets</span><span class="tag">Publishing package</span></div><ul><li>Memproduksi aset final dari konsep yang sudah disetujui.</li><li>Mengadaptasi rasio, durasi, subtitle, thumbnail, caption, dan metadata per platform.</li><li>Menyimpan versi aset dan manifest untuk pelacakan.</li><li>Menyiapkan paket siap unggah atau menerbitkan melalui integrasi resmi yang diizinkan.</li></ul><div class="output"><b>Solusi & manfaat:</b> batch konten rapi, aset tidak mudah tertukar, delivery dapat diaudit.<br><b>Output:</b> aset final, production manifest, release checklist, publish log.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="3" aria-label="Buka simulasi Agent 3">Simulasi Agent 3</button></div></article>
 <article class="agent"><div class="agenttop"><div class="num">04</div><div><h3>Content Quality Reviewer & Critic</h3><p>Jaga standar sebelum rilis, pelajari performa sesudahnya.</p></div></div><div class="tags"><span class="tag">Independent QA</span><span class="tag">Performance review</span><span class="tag">Improvement loop</span></div><ul><li>Memeriksa akurasi, kesesuaian mockup, kualitas visual/audio, CTA, dan kebijakan platform.</li><li>Memberi status PASS, NEEDS REVISION, atau REJECT beserta alasan.</li><li>Memantau metrik pascapublikasi sesuai akses dan interval yang tersedia.</li><li>Mengubah temuan menjadi rekomendasi dan backlog eksperimen.</li></ul><div class="output"><b>Solusi & manfaat:</b> mengurangi risiko kesalahan rilis dan membuat pembelajaran terukur.<br><b>Output:</b> pre-publish review, post-publish analysis, improvement backlog.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="4" aria-label="Buka simulasi Agent 4">Simulasi Agent 4</button></div></article>
 <article class="agent"><div class="agenttop"><div class="num">05</div><div><h3>Content Automation & Lead Orchestrator</h3><p>Hubungkan semua tahap, status, jadwal, dan approval.</p></div></div><div class="tags"><span class="tag">Hermes Agent</span><span class="tag">Telegram Bot</span><span class="tag">Cron schedule</span><span class="tag">Audit trail</span></div><ul><li>Mengelola task ID, status workflow, handoff, retry, notifikasi, dan arsip di folder Downloads yang dikonfigurasi.</li><li>Mengirim preview untuk approval mockup dan approval rilis melalui Telegram Bot.</li><li>Menjalankan jadwal hanya jika status, izin, QA, dan approval memenuhi syarat.</li><li>Mengirim ringkasan harian dan mengembalikan insight Agent 4 ke siklus berikutnya.</li></ul><div class="output"><b>Solusi & manfaat:</b> satu alur yang dapat dipantau, keputusan terlacak, otomasi tetap terkendali.<br><b>Output:</b> workflow spec, schedule calendar, run registry, approval log, orchestration report.</div><div class="simulation-actions"><button class="simulation-btn" type="button" data-agent-simulation="5" aria-label="Buka simulasi Agent 5">Simulasi Agent 5</button></div></article>
+</div></div></section>
+
+<section id="framework"><div class="wrap"><div class="head"><span class="kicker">Operating Framework</span><h2>Multi-Agent Operating Framework</h2><p>Alur kerja seperti yang dibangun di Hermes Agent Desktop: Bot 1 memegang keputusan akhir, Agent 5 mengorkestrasi, dan Bot 2 memantau.</p></div>
+<div class="fw">
+<div class="node bot1"><b>BOT 1 — CENTRAL CONTROL</b><small>Pusat koordinasi • approval • keputusan akhir (Telegram)</small></div><div class="arrow">↓</div>
+<div class="node"><b>AGENT 5 — ORCHESTRATOR</b><small>Menerima brief • membagi tugas • mengelola workflow</small></div>
+<div class="pair">
+<div class="node ag"><span>AGENT 1</span><em>Research</em><small>Riset pasar, kompetitor, data, referensi</small></div>
+<div class="node ag"><span>AGENT 2</span><em>Creation</em><small>Copywriting, strategi konten, konsep kreatif, mockup</small></div>
+<div class="node ag hl"><span>AGENT 3</span><em>Production</em><small>Aset final, manifest, release checklist, paket unggah</small></div>
+<div class="node ag"><span>AGENT 4</span><em>Analytics</em><small>QA, tracking, evaluasi, laporan performa</small></div>
+</div><div class="arrow">↓</div>
+<div class="node bot2"><b>BOT 2 — MONITORING HUB</b><small>Monitoring status • notifikasi • rekap laporan</small></div>
 </div></div></section>
 
 <section id="workflow"><div class="wrap"><div class="head"><span class="kicker">Workflow</span><h2>Dari riset sampai insight berikutnya.</h2><p>Dua gerbang persetujuan membantu otomasi mempercepat eksekusi tanpa mengambil alih keputusan penting.</p></div>
@@ -418,6 +444,137 @@ $('runsel').onchange=pick;$('go').onclick=run;
 
 </template>
 
+<template id="agent3-sim">
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulasi Agent 3 — ContentFlow.AI</title>
+<style>
+:root{--bg:#0b0e17;--card:#131827;--line:#2a3246;--txt:#e8ebf5;--mut:#9aa3bd;--green:#b7f477;--gold:#f2c400;--red:#ff6b5e;--amber:#ffd466}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.55;padding:24px}
+main{max-width:1320px;margin:0 auto}h1{font-size:24px;margin:0}.sub{color:var(--mut);margin:4px 0 20px}h2{font-size:18px;margin:28px 0 10px}
+.input{border:2px solid var(--red);border-radius:6px;padding:18px 20px;max-width:620px}.input p{margin:0 0 10px}
+.input label.r{display:flex;gap:10px;align-items:center;padding:4px 0;cursor:pointer;font-size:17px}.input input[type=radio]{accent-color:var(--gold);width:18px;height:18px}
+.fld{margin-top:10px}.fld[hidden]{display:none}.fld label{display:block;font-size:12px;color:var(--mut);margin-bottom:3px}
+.fld select{width:100%;background:#0c1020;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:8px;font:inherit;font-size:13px}
+.est{font-size:12px;color:var(--mut);margin:10px 0 0}
+button.go{margin:12px 0 0 24px;background:transparent;color:var(--gold);border:3px solid var(--gold);font:700 18px Inter;padding:8px 38px;cursor:pointer}
+button.go:hover:not(:disabled),button.go:focus-visible{background:var(--gold);color:#0b0e17;outline:none}button:disabled{opacity:.45;cursor:not-allowed}
+.steps{display:none;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.steps.on{display:grid}
+.stp{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card);font-size:13px}.stp b{display:block}.stp small{color:var(--mut);display:block;margin-top:2px}.stp i{font-style:normal;color:var(--mut);font-size:11px;letter-spacing:.08em}
+.stp.on{border-color:var(--gold)}.stp.ok{border-color:var(--green)}.stp.ok i{color:var(--green)}.stp.bad{border-color:var(--red)}.stp.bad i{color:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ck{display:inline-flex;gap:6px;align-items:center;background:#1a2133;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer}.ck input{accent-color:var(--gold)}
+.status{margin-top:14px;display:none;border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--card)}.status.on{display:block}.status .row{display:flex;gap:12px;align-items:center}
+.spin{width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--green);border-radius:50%;animation:r 1s linear infinite;flex:none}
+.status.err{border-color:var(--red)}.status.err .spin,.status.done .spin{display:none}@keyframes r{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spin{animation-duration:3s}}@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
+.log{margin:10px 0 0;padding-left:20px;color:var(--mut);font-size:14px}.link{color:var(--mut)}.sm{font-size:13px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;width:100%;min-width:900px;font-size:13px}
+th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}th{background:#1a2133;text-align:center}
+.badge{display:inline-block;background:#1d2a14;color:var(--green);border-radius:6px;padding:0 8px;font-weight:700}
+.src{display:inline-block;border-radius:6px;padding:1px 8px;font-size:12px;font-weight:600;white-space:nowrap}
+.src.ok{background:#1d2a14;color:var(--green)}.src.warn{background:#3a2b00;color:var(--amber)}.src.mut{background:#1a2133;color:var(--mut)}
+.box{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:6px 20px 12px}.box li{margin:6px 0}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.g3 h3{margin:10px 0 6px;font-size:15px;color:var(--green)}.g3 p{margin:6px 0}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.kpi div{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:10px 14px}.kpi b{display:block;font-size:24px;color:var(--green)}.kpi span{font-size:12px;color:var(--mut)}
+.nc{margin:0 0 22px}.nc h3{margin:0 0 8px;font-size:16px}.mono{font-family:Consolas,monospace;font-size:12px;word-break:break-all}
+#out{display:none}#out.on{display:block}
+</style></head>
+<body><main>
+<h1>Simulasi Agent 3 — Content Production &amp; Delivery</h1>
+<p class="sub">Agent 3 membaca draft mockup hasil Agent 2, memproduksi aset final per platform, lalu menyiapkan production manifest, release checklist, dan publish log. Approval dilakukan manusia melalui Telegram BOT 1.</p>
+
+<h2>Data Input</h2>
+<form class="input" id="f" onsubmit="return false">
+  <p>Pilih Platform (sumber data: draft mockup hasil Agent 2):</p>
+  <label class="r"><input type="radio" name="p" value="tiktok"> TikTok</label>
+  <label class="r"><input type="radio" name="p" value="instagram"> Instagram</label>
+  <label class="r"><input type="radio" name="p" value="facebook"> Facebook</label>
+  <div class="fld" id="campwrap" hidden><label for="campsel">Draft mockup Agent 2</label><select id="campsel"></select>
+    <label style="margin-top:10px">Campaign yang diproduksi (maks. 6)</label><div class="chips" id="pick"></div></div>
+  <p class="est" id="est">Pilih platform untuk memuat draft mockup Agent 2.</p>
+  <button class="go" id="go" type="button" disabled>Produce</button>
+</form>
+
+<div class="steps" id="steps" aria-label="Tahapan Agent 3">
+  <div class="stp" id="s1"><i>01</i><b>Baca draft mockup</b><small>Menunggu</small></div>
+  <div class="stp" id="s2"><i>02</i><b>Produksi aset final</b><small>Menunggu</small></div>
+  <div class="stp" id="s3"><i>03</i><b>Manifest &amp; checklist</b><small>Menunggu</small></div>
+  <div class="stp" id="s4"><i>04</i><b>Arsip &amp; minta approval</b><small>Menunggu</small></div>
+</div>
+<div class="status" id="st" role="status" aria-live="polite"><div class="row"><div class="spin"></div><div><b id="msg"></b><div class="link" id="tm"></div></div></div><ol class="log" id="log"></ol></div>
+
+<section id="out">
+  <h2>DATA OUTPUT:</h2>
+  <div class="kpi" id="kpi"></div>
+  <h2>Final Asset</h2>
+  <div id="assets"></div>
+  <h2>Ringkasan &amp; Insight:</h2>
+  <div class="g3"><div class="box sm"><h3>Production Manifest</h3><div id="smf"></div></div><div class="box sm"><h3>Release Checklist</h3><div id="schk"></div></div><div class="box sm"><h3>Publish Log</h3><div id="slog"></div></div></div>
+  <div class="box" id="ins" style="margin-top:12px"></div>
+  <p class="link sm" id="gen"></p>
+</section>
+</main>
+<script>
+const BRIDGE=(window.opener&&window.opener.CONTENTFLOW_BRIDGE)||'http://127.0.0.1:8787';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let drafts=[],t0=0,timer;
+const plat=()=>{const p=document.querySelector('input[name=p]:checked');return p?p.value:null};
+const fd=d=>d.slice(6,8)+'/'+d.slice(4,6)+'/'+d.slice(0,4);
+const checked=()=>[...document.querySelectorAll('#pick input:checked')].map(i=>i.value);
+function status(msg,cls){const s=$('st');s.className='status on '+(cls||'');$('msg').textContent=msg;if(!cls){const l=document.createElement('li');l.textContent=msg;$('log').appendChild(l)}}
+function tick(on){clearInterval(timer);if(on){t0=Date.now();timer=setInterval(()=>$('tm').textContent='Berjalan '+Math.floor((Date.now()-t0)/1000)+' detik',1000)}else $('tm').textContent=''}
+function step(i,state,msg){const el=$('s'+i);if(!el)return;el.className='stp '+({start:'on',done:'ok',error:'bad'}[state]||'');if(msg)el.querySelector('small').textContent=msg}
+function resetSteps(){$('steps').className='steps on';for(let i=1;i<=4;i++){$('s'+i).className='stp';$('s'+i).querySelector('small').textContent='Menunggu'}}
+function upd(){$('go').disabled=!checked().length}
+async function loadDrafts(){
+  const p=plat();if(!p)return;$('go').disabled=true;$('campwrap').hidden=true;$('est').textContent='Membaca draft mockup Agent 2…';
+  try{const r=await fetch(BRIDGE+'/creation-drafts?platform='+p);if(!r.ok)throw new Error('HTTP '+r.status);drafts=(await r.json()).drafts||[]}
+  catch(e){console.error('[Agent 3]',e);drafts=[];$('est').textContent='Layanan belum dapat dihubungi. Pastikan bridge Hermes aktif, lalu coba lagi.';return}
+  if(!drafts.length){$('est').textContent='Belum ada draft mockup untuk platform ini. Jalankan Simulasi Agent 2 terlebih dahulu.';return}
+  $('campsel').innerHTML=drafts.map((d,i)=>`<option value="${i}">${fd(d.date)} · ${esc(d.niche)} · ${d.campaigns.length} campaign</option>`).join('');
+  $('campwrap').hidden=false;$('est').textContent='Tanpa biaya Apify: Agent 3 memakai model Hermes Anda.';pick();
+}
+function pick(){const d=drafts[+$('campsel').value];if(!d)return;
+  $('pick').innerHTML=d.campaigns.slice(0,8).map((c,i)=>`<label class="ck"><input type="checkbox" value="${esc(c.campaign_id)}" ${i<6?'checked':''}> ${esc(c.campaign_id)} · ${esc(c.format||'')}</label>`).join('');
+  document.querySelectorAll('#pick input').forEach(i=>i.onchange=()=>{if(checked().length>6)i.checked=false;upd()});upd()}
+const STL={'QA-PASS':['Lolos QA','ok'],'AWAITING-APPROVAL':['Menunggu approval','warn'],'QA-FLAG':['Perlu perbaikan','warn']};
+function render(d){
+  const t=d.totals||{};
+  $('kpi').innerHTML=[['Campaign',t.campaigns],['Aset final',t.assets],['Lolos QA',t.qa_pass],['Perlu perbaikan',t.qa_flag],['Item manual',t.manual_items]].map(x=>`<div><b>${esc(x[1]==null?0:x[1])}</b><span>${x[0]}</span></div>`).join('');
+  $('assets').innerHTML=d.campaigns.map(c=>`<div class="nc"><h3>${esc(c.niche)} <span class="badge">${esc(c.campaign_id)}</span> <span class="badge">${esc(c.asset_version)}</span></h3><div class="tw"><table><thead><tr><th>Nama file</th><th>Format</th><th>Rasio / durasi</th><th>Caption &amp; thumbnail</th><th>Status</th></tr></thead><tbody>${c.assets.map(a=>{const s=STL[a.status]||[a.status,'mut'];return `<tr><td class="mono">${esc(a.filename)}</td><td>${esc(a.format)}</td><td>${esc(a.ratio||'')}${a.duration?' · '+esc(a.duration):''}</td><td>${a.caption?'Caption ✓':'Caption –'} · ${a.thumbnail?'Thumbnail ✓':'Thumbnail –'}</td><td><span class="src ${s[1]}">${esc(s[0])}</span></td></tr>`}).join('')}</tbody></table></div></div>`).join('');
+  $('smf').innerHTML=d.campaigns.map(c=>`<p><b>${esc(c.campaign_id)} · ${esc(c.asset_version)}</b><br>${c.assets.length} aset · sumber: draft mockup Agent 2<br><span class="link">${esc(c.manifest&&c.manifest.note||'Versi, ukuran, dan checksum tercatat per aset.')}</span></p>`).join('');
+  $('schk').innerHTML=d.campaigns.map(c=>{const k=c.checklist||{};return `<p><b>${esc(c.campaign_id)}</b><br>${k.pass||0} lolos · ${k.flag||0} perbaiki · ${k.manual||0} butuh verifikasi manusia</p>`}).join('')+'<p class="link">Item manual: hak audio/musik, klaim, aset visual, brand guideline.</p>';
+  $('slog').innerHTML=(d.publish_log&&d.publish_log.length?'<ul>'+d.publish_log.map(x=>`<li>${esc(x.time||'')} · ${esc(x.campaign_id||'')} — ${esc(x.action)}: <b>${esc(x.status)}</b></li>`).join('')+'</ul>':'<p class="link">Belum ada publikasi.</p>')+'<p class="link">Publikasi hanya terjadi setelah approval rilis via Telegram BOT 1 dan bila integrasi resmi tersedia.</p>';
+  $('ins').innerHTML=`<p>Agent 3 memproduksi <b>${t.assets||0} aset final</b> dari ${t.campaigns||0} campaign di ${esc(d.platform)}. Status <i>Menunggu approval</i> berarti aset siap diajukan di Telegram BOT 1, bukan disetujui untuk tayang.</p>`+((d.insights||[]).length?'<ul>'+d.insights.map(i=>`<li>${esc(i)}</li>`).join('')+'</ul>':'');
+  $('gen').textContent='Dibuat '+(d.generated_at||'')+' · sumber: draft mockup Agent 2 · belum ada data performa.';
+  $('out').className='on';$('out').scrollIntoView({behavior:'smooth'});
+}
+async function run(){
+  const p=plat(),d=drafts[+$('campsel').value];if(!p||!d)return;
+  $('go').disabled=true;$('out').className='';$('log').innerHTML='';resetSteps();tick(true);status('Memulai Agent 3…');
+  try{
+    const res=await fetch(BRIDGE+'/production',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({platform:p,draft_id:d.id,campaigns:checked()})});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const rd=res.body.getReader(),dec=new TextDecoder();let buf='',done=false;
+    while(true){const{value,done:dn}=await rd.read();if(dn)break;buf+=dec.decode(value,{stream:true});
+      let i;while((i=buf.indexOf('\n'))>=0){const line=buf.slice(0,i).trim();buf=buf.slice(i+1);if(!line)continue;const e=JSON.parse(line);
+        if(e.event==='stage'){step(e.step,e.state,e.state==='done'?'Selesai':'Berjalan');if(e.msg)status(e.msg)}
+        else if(e.event==='error'){const x=new Error(e.msg);x.fromBridge=true;throw x}
+        else if(e.event==='result'){done=true;status('Selesai.','done');render(e)}}}
+    if(!done)throw new Error('Koneksi terputus sebelum hasil diterima.');
+  }catch(e){
+    console.error('[Agent 3]',e);for(let k=1;k<=4;k++)if($('s'+k).className==='stp on')step(k,'error','Gagal');
+    status(e.fromBridge?'Production belum dapat diselesaikan: '+e.message:(e instanceof TypeError?'Layanan belum dapat dihubungi. Pastikan bridge Hermes aktif, lalu coba lagi.':'Production belum dapat diselesaikan. Silakan coba lagi beberapa saat lagi.'),'err');
+  }finally{tick(false);upd()}
+}
+document.querySelectorAll('input[name=p]').forEach(r=>r.onchange=loadDrafts);
+$('campsel').onchange=pick;$('go').onclick=run;
+</script></body></html>
+
+</template>
+
 <script>
   // GANTI nomor ini dengan nomor WhatsApp bisnis format internasional, tanpa +, spasi, atau strip.
   const WHATSAPP_NUMBER = "6285117580176";
@@ -531,6 +688,38 @@ $('runsel').onchange=pick;$('go').onclick=run;
     close.focus();
   }
 
+  function openAgent3Simulation() {
+    const html = document.getElementById("agent3-sim").innerHTML;
+    let popup = null;
+    try {
+      popup = window.open("", "contentflow_agent_3", "popup=yes,width=1360,height=860,resizable=yes,scrollbars=yes");
+    } catch (e) {}
+    if (popup && !popup.closed) {
+      popup.document.open();
+      popup.document.write(html);
+      popup.document.close();
+      popup.focus();
+      return;
+    }
+    // Cadangan bila pop-up diblokir: tampilkan simulasi di dalam halaman.
+    const box = document.createElement("div");
+    box.style.cssText = "position:fixed;inset:0;z-index:9999;background:#0b0e17;display:flex;flex-direction:column";
+    const bar = document.createElement("div");
+    bar.style.cssText = "display:flex;justify-content:flex-end;padding:8px 12px;background:#0a0d15";
+    const close = document.createElement("button");
+    close.type = "button";
+    close.textContent = "Tutup simulasi";
+    close.style.cssText = "background:transparent;color:#f2c400;border:2px solid #f2c400;font:700 14px Inter,system-ui,sans-serif;padding:6px 18px;cursor:pointer";
+    close.onclick = function() { box.remove(); };
+    bar.appendChild(close);
+    const frame = document.createElement("iframe");
+    frame.style.cssText = "flex:1;border:0;width:100%;background:#0b0e17";
+    frame.srcdoc = html;
+    box.append(bar, frame);
+    document.body.appendChild(box);
+    close.focus();
+  }
+
   document.querySelectorAll("[data-agent-simulation]").forEach(function(button) {
     button.addEventListener("click", function() {
       const agentNumber = button.getAttribute("data-agent-simulation");
@@ -538,6 +727,7 @@ $('runsel').onchange=pick;$('go').onclick=run;
       if (!agent) return;
       if (agentNumber === "1") { openAgent1Simulation(); return; }
       if (agentNumber === "2") { openAgent2Simulation(); return; }
+      if (agentNumber === "3") { openAgent3Simulation(); return; }
 
       const popup = window.open("", "contentflow_agent_" + agentNumber,
         "popup=yes,width=1100,height=760,resizable=yes,scrollbars=yes");
